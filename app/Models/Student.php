@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Notifications\StudentResetPassword;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +11,12 @@ use Illuminate\Notifications\Notifiable;
 
 class Student extends Authenticatable
 {
-    use SoftDeletes, Notifiable;
+    use SoftDeletes, Notifiable, CanResetPassword;
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new StudentResetPassword($token));
+    }
 
     protected $fillable = [
         'full_name',

@@ -108,9 +108,9 @@
 
 <body class="min-h-screen flex flex-col">
     <!-- Top Navigation -->
-    <nav class="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
-        <div class="flex items-center gap-12">
-            <!-- Nav Icons Left -->
+    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="relative max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Left: Nav Icons -->
             <div class="flex items-center gap-8 text-gray-600">
                 <a href="{{ route('student.dashboard') }}"
                     class="flex flex-col items-center gap-1 {{ request()->routeIs('student.dashboard') ? 'text-[#4A3B75]' : '' }}">
@@ -131,15 +131,14 @@
                     <span class="text-[10px] font-bold uppercase tracking-widest">Claims</span>
                 </a>
             </div>
-        </div>
 
-        <!-- Logo Center -->
-        <div class="absolute left-1/2 -translate-x-1/2">
-            <h1 class="text-2xl font-bold text-[#4A3B75] uppercase">{{ config('app.name') }}</h1>
-        </div>
+            <!-- Logo Center -->
+            <div class="absolute left-1/2 -translate-x-1/2">
+                <h1 class="text-2xl font-bold text-[#4A3B75] uppercase">{{ config('app.name') }}</h1>
+            </div>
 
-        <!-- Right Side Icons -->
-        <div class="flex items-center gap-6 text-gray-600">
+            <!-- Right Side Icons -->
+            <div class="flex items-center gap-6 text-gray-600">
             <a href="#" class="hover:text-[#4A3B75] transition-colors"><svg width="20" height="20"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path

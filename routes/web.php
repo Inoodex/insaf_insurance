@@ -45,6 +45,11 @@ Route::prefix('student')->group(function () {
     Route::post('login', [StudentLoginController::class, 'login']);
     Route::post('logout', [StudentLoginController::class, 'logout'])->name('student.logout');
 
+    Route::get('forgot-password', [\App\Http\Controllers\Student\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('student.password.request');
+    Route::post('forgot-password', [\App\Http\Controllers\Student\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('student.password.email');
+    Route::get('reset-password/{token}', [\App\Http\Controllers\Student\Auth\ForgotPasswordController::class, 'showResetForm'])->name('student.password.reset');
+    Route::post('reset-password', [\App\Http\Controllers\Student\Auth\ForgotPasswordController::class, 'reset'])->name('student.password.update');
+
     Route::middleware(['auth:student'])->group(function () {
         Route::get('dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
         Route::get('profile', [StudentProfileController::class, 'index'])->name('student.profile');
@@ -59,6 +64,7 @@ Route::prefix('student')->group(function () {
         // Claims
         Route::get('claims', [StudentClaimController::class, 'index'])->name('student.claims.index');
         Route::get('claims/create', [StudentClaimController::class, 'create'])->name('student.claims.create');
+        Route::post('claims/create', [StudentClaimController::class, 'create'])->name('student.claims.create.post');
         Route::post('claims', [StudentClaimController::class, 'store'])->name('student.claims.store');
         Route::get('claims/{claim}', [StudentClaimController::class, 'show'])->name('student.claims.show');
     });

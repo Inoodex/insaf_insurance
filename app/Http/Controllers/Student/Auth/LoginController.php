@@ -35,6 +35,7 @@ class LoginController extends Controller
     {
         Auth::guard('student')->logout();
 
+        $request->session()->forget('claim_form');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

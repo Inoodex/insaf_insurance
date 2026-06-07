@@ -369,113 +369,113 @@
 
     <div class="header clearfix">
         <div class="logo">Inoodex</div>
-        <div class="e-doc-info">E-Dokument ausgestellt: {{ now()->format('d.m.Y H:i') }}</div>
+        <div class="e-doc-info">e-documento emitido: {{ now()->format('d.m.Y H:i') }}</div>
     </div>
 
     <div class="row clearfix">
         <div class="col">
-            <div class="section-header">Versicherungsnehmer</div>
+            <div class="section-header">Tenedor de poliza</div>
             <strong>{{ strtoupper($application->student->full_name) }}</strong><br>
             {{ $application->student->institute_address }}<br>
             PLA 1501 Tarxien<br>
             (Malta)
         </div>
         <div class="col">
-            <div class="section-header">Korrespondenzadresse</div>
+            <div class="section-header">Dirección de correspondencia</div>
             <strong>{{ strtoupper($application->student->full_name) }}</strong><br>
             {{ $application->student->institute_address }}<br>
             PLA 1501 Tarxien<br>
             (Malta)
         </div>
         <div class="col">
-            {{-- <div class="section-header">Kontakt</div> --}}
-            E-Mail: {{ $application->student->email }}<br>
-            Telefonnummer: {{ $application->student->phone_number ?? '+35677775386' }}
+            {{-- <div class="section-header">Contacto</div> --}}
+            Email: {{ $application->student->email }}<br>
+            Teléfono: {{ $application->student->phone_number ?? '+35677775386' }}
         </div>
     </div>
 
     <div class="row" style="margin-top: 20px;">
-        <div class="section-header">Versicherte Person</div>
+        <div class="section-header">Asegurado</div>
         {{ strtoupper($application->student->full_name) }} | {{ ucfirst($application->student->gender) }} |
         {{ $application->student->date_of_birth->format('d.m.Y') }} | {{ $application->student->passport_number }} |
-        Staatsangehoerigkeit: {{ $application->student->nationality }} | Herkunftsland:
+        Nacionalidad: {{ $application->student->nationality }} | País de origen:
         {{ $application->student->country_of_origin }}
     </div>
 
     <div class="policy-title">{{ $application->plan->plan_name }}</div>
-    <div class="policy-number">Police {{ $application->policy_number }}</div>
+    <div class="policy-number">Póliza {{ $application->policy_number }}</div>
 
-    <div class="benefits-title">Leistungsuebersicht</div>
+    <div class="benefits-title">Cobertura de seguro</div>
     <table class="benefit-table">
         <tr class="shade">
-            <th width="27%">Tarifstufe</th>
+            <th width="27%">Nombre del plan</th>
             <td width="43%">Standard</td>
             <td width="30%"></td>
         </tr>
         <tr class="white">
-            <th>Erstes Reiseziel</th>
+            <th>Primer destino</th>
             <td colspan="2">Malta</td>
         </tr>
         <tr class="shade">
-            <th>Gebiete</th>
-            <td>Weltweit ohne US-Gebiete, Kanada und Herkunftsland</td>
-            <td>Schengen-Laender sind eingeschlossen</td>
+            <th>Territorialidad</th>
+            <td>En todo el mundo, excluidos los territorios de EE.UU., Canadá y el país de origen</td>
+            <td>Países Schengen incluidos</td>
         </tr>
         <tr class="shade">
-            <th>Hinweis</th>
-            <td>Keine Selbstbeteiligung fuer medizinische Deckung</td>
-            <td>Es gelten keine Wartezeiten</td>
+            <th>Aviso</th>
+            <td>Seguro sin copago para la cobertura médica</td>
+            <td>Sin período de carencia</td>
         </tr>
         <tr class="shade">
-            <th>Medizinische Deckung</th>
-            <td class="amount">Max. {{ $amt('medical_cover') }}</td>
+            <th>Cobertura médica</th>
+            <td class="amount">Máx. {{ $amt('medical_cover') }}</td>
             <td class="detail">
-                Medizinische Notfallversorgung<br>
-                Krankheit und Unfall<br>
-                Stationaere / ambulante Behandlung<br>
-                Allgemeinaerzte und Fachaerzte<br>
-                Verschreibungspflichtige Medikamente
+                Tratamiento médico de emergencia<br>
+                Enfermedad y accidente<br>
+                Tratamientos hospitalarios y ambulatorios<br>
+                Médicos de cabecera y especialistas<br>
+                Medicamentos prescritos
             </td>
         </tr>
         <tr class="white">
-            <th>See- und Bergrettung</th>
-            <td class="amount">Max. {{ $amt('sea_mountain_rescue') }}</td>
+            <th>Búsqueda & rescate</th>
+            <td class="amount">Máx. {{ $amt('sea_mountain_rescue') }}</td>
             <td></td>
         </tr>
         <tr class="shade">
-            <th>Medizinische Notfallevakuierung</th>
-            <td class="amount">Max. {{ $amt('emergency_evacuation') }}</td>
-            <td rowspan="2" class="shade-cell">Per Luft, Land oder See</td>
+            <th>Evacuación Médica de emergencia</th>
+            <td class="amount">Máx. {{ $amt('emergency_evacuation') }}</td>
+            <td rowspan="2" class="shade-cell">En aire - mar - tierra</td>
         </tr>
         <tr class="shade">
-            <th>Medizinische Rueckfuehrung</th>
-            <td class="amount">Max. {{ $amt('medical_repatriation') }}</td>
+            <th>Repatriación sanitaria</th>
+            <td class="amount">Máx. {{ $amt('medical_repatriation') }}</td>
         </tr>
         <tr class="white">
-            <th>Rueckfuehrung sterblicher Ueberreste</th>
-            <td class="amount">Max. {{ $amt('repatriation_mortal_remains') }}</td>
+            <th>Repatriación de restos mortales</th>
+            <td class="amount">Máx. {{ $amt('repatriation_mortal_remains') }}</td>
             <td></td>
         </tr>
         <tr class="shade">
-            <th>Gepaeck</th>
-            <td class="amount">Max. {{ $amt('luggage') }}</td>
+            <th>Equipaje de viaje</th>
+            <td class="amount">Máx. {{ $amt('luggage') }}</td>
             <td class="detail">
-                Verlust, Beschaedigung, Raub oder Diebstahl von Gepaeck<br><br>
-                (Selbstbeteiligung von EUR 250.00 pro Schadenfall)
+                Pérdida, daño, robo o hurto de equipaje<br><br>
+                (Franquicia de € 250.00 por siniestro)
             </td>
         </tr>
         <tr class="white">
-            <th>Unfalltod</th>
-            <td class="amount">Max. {{ $amt('accidental_death') }}</td>
-            <td rowspan="2">Pauschalbetrag</td>
+            <th>Accidente personal - Muerte</th>
+            <td class="amount">Máx. {{ $amt('accidental_death') }}</td>
+            <td rowspan="2">Suma global</td>
         </tr>
         <tr class="white">
-            <th>Unfallinvaliditaet</th>
-            <td class="amount">Max. {{ $amt('accidental_disability') }}</td>
+            <th>Accidente personal - Invalidez</th>
+            <td class="amount">Máx. {{ $amt('accidental_disability') }}</td>
         </tr>
         <tr class="shade">
-            <th>Haftpflicht gegenueber Dritten</th>
-            <td colspan="2" class="amount">Max. {{ $amt('third_party_liability') }}</td>
+            <th>Responsabilidad civil</th>
+            <td colspan="2" class="amount">Máx. {{ $amt('third_party_liability') }}</td>
         </tr>
     </table>
 
@@ -483,19 +483,19 @@
         <table class="footer-table">
             <thead>
                 <tr>
-                    <th>Von</th>
-                    <th>Bis</th>
-                    <th>Dauer</th>
-                    <th>Praemie</th>
-                    <th>Bezahlt am</th>
-                    <th>GIC</th>
+                    <th>Fecha de inicio</th>
+                    <th>Fecha de fin</th>
+                    <th>Duración</th>
+                    <th>Prima</th>
+                    <th>Pagado el</th>
+                    <th>Condiciones generales</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{{ $application->start_date->format('d.m.Y') }}</td>
                     <td>{{ $application->end_date->format('d.m.Y') }}</td>
-                    <td>{{ $application->duration_days }} Tage</td>
+                    <td>{{ $application->duration_days }} No. de días</td>
                     <td>{{ $application->currency }} {{ number_format($application->premium_amount, 2) }}</td>
                     <td>{{ $application->paid_on ? $application->paid_on->format('d.m.Y') : 'N/A' }}</td>
                     <td>{{ $application->gic_reference ?? 'ISIE-GIC-012026' }}</td>
@@ -505,8 +505,8 @@
     </div>
 
     <div style="text-align: center; margin-top: 15px; font-weight: bold;">
-        Der Versicherer zahlt den medizinischen Leistungserbringer direkt, falls dies gesetzlich erforderlich ist.<br>
-        Alarm-Service (nur fuer Notfaelle, 24/7): + 31 50 520 9780
+        The insurer will pay the medical provider directly if required by the law.<br>
+        Alarm Service (for emergencies only, 24/7): + 31 50 520 9780
     </div>
 
     <div class="signature-section clearfix">
@@ -521,9 +521,9 @@
     </div>
 
     <div class="legal-notice">
-        Rechtlicher Hinweis: Der Versicherer ist Anker Insurance Company n.v. mit Sitz am Paterswoldseweg 812,
-        9728 BM Groningen. Anker ist bei der Autoriteit Financiele Markten (AFM), der niederlaendischen
-        Finanzmarktaufsicht, unter der Nummer 12000661 registriert und von De Nederlandsche Bank ("DNB") zugelassen.
+        Aviso legal: La aseguradora es Anker Insurance Company n.v. con domicilio en Paterswoldseweg 812,
+        9728 BM Groningen. Anker está registrada ante la Autoriteit Financiële Markten (AFM), la autoridad
+        holandesa de los mercados financieros, con el número 12000661 y está autorizada por De Nederlandsche Bank ("DNB").
     </div>
 </body>
 

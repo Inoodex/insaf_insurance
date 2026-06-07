@@ -11,8 +11,14 @@
         </a>
 
         @if(session('success'))
-            <div class="w-full mb-6 p-4 bg-green-50 text-green-600 rounded-2xl text-sm font-medium border border-green-100">
+            <div class="w-full mb-6 p-4 bg-green-50 text-green-600 rounded-2xl text-sm font-medium border border-green-100 text-center">
                 {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="w-full mb-6 p-4 bg-red-50 text-red-600 rounded-2xl text-sm font-medium border border-red-100 text-center">
+                {{ session('error') }}
             </div>
         @endif
 
