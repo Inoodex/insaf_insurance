@@ -67,6 +67,7 @@ class InsuranceApplicationController extends Controller
         $validated['duration_days'] = $duration;
         $validated['status'] = 'draft';
         $validated['territories'] = $plan->territories;
+        $validated['policy_number'] = 'ISIE-' . strtoupper(Str::random(6));
 
         $application = InsuranceApplication::create($validated);
 
@@ -166,20 +167,12 @@ class InsuranceApplicationController extends Controller
             return back()->with('error', 'Cannot email a policy that is ' . $application->status . '.');
         }
 
-        if (!$application->policy_number) {
-            $application->policy_number = 'ISIE-' . strtoupper(Str::random(6));
-        }
-
-        $wasAlreadySent = $application->status === 'sent';
         $application->status = 'sent';
+        $application->save();
 
         $this->sendPolicyIssuedNotification($application, force: true);
 
-        if (!$wasAlreadySent) {
-            $application->save();
-        }
-
-        return back()->with('success', 'Policy email sent to ' . $application->student->email . '.');
+        return back()->with('success', 'Policy ' . $application->policy_number . ' has been issued and emailed to ' . $application->student->email . '.');
     }
 
     private function sendPolicyIssuedNotification(InsuranceApplication $application, bool $force = false): void
