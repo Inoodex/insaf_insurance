@@ -95,7 +95,7 @@
                                         @if(!in_array($application->status, ['expired', 'cancelled']))
                                             <form action="{{ route('admin.applications.send-email', $application->id) }}" method="POST" class="inline" onsubmit="return confirm('{{ $application->status === 'draft' ? 'This will generate a policy number, mark the application as Sent, and email the billing summary to the student. Continue?' : 'Send the policy-issued email with billing summary to the student?' }}');">
                                                 @csrf
-                                                <button type="submit" class="btn btn-sm btn-outline-info" title="Send Policy Email">
+                                                <button type="submit" class="btn btn-sm btn-outline-secondary" title="Send Policy Email">
                                                     {{ $application->status === 'draft' ? 'Issue & Email' : 'Email Application' }}
                                                 </button>
                                             </form>
