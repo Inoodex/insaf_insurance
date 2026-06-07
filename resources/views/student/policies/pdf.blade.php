@@ -178,6 +178,10 @@
             border-top: 1px solid #eee;
             padding-top: 10px;
         }
+
+        .page-break {
+            page-break-before: always;
+        }
     </style>
 </head>
 
@@ -203,7 +207,7 @@
             (Malta)
         </div>
         <div class="col">
-            <div class="section-header">Contact</div>
+            {{-- <div class="section-header">Contact</div> --}}
             Email: {{ $application->student->email }}<br>
             Phone number: {{ $application->student->phone_number ?? '+35677775386' }}
         </div>
@@ -221,11 +225,11 @@
     <div class="policy-number">Policy {{ $application->policy_number }}</div>
 
     @php
-        $benefits = $application->benefitCoverages->keyBy('benefit_type');
-        $amt = function ($type) use ($benefits) {
-            $b = $benefits->get($type);
-            return $b ? '€ ' . number_format($b->max_amount, 2) : '€ 0.00';
-        };
+    $benefits = $application->benefitCoverages->keyBy('benefit_type');
+    $amt = function ($type) use ($benefits) {
+    $b = $benefits->get($type);
+    return $b ? '€ ' . number_format($b->max_amount, 2) : '€ 0.00';
+    };
     @endphp
 
     <div class="benefits-title">Benefits summary</div>
@@ -347,12 +351,12 @@
 
     <div class="signature-section clearfix">
         <div style="float: left; width: 50%; text-align: center;">
-            <img src="{{ asset('images/logo.png') }}" class="signature-img"><br>
-            <span style="font-size: 8px; font-weight: bold; color: #0056b3;">ANKER</span><br>
-            <span style="font-size: 7px; color: #0056b3;">INSURANCE</span>
+            <img src="{{ public_path('assets/images/logo.png') }}" class="signature-img"><br>
+            {{-- <span style="font-size: 8px; font-weight: bold; color: #0056b3;">ANKER</span><br>
+            <span style="font-size: 7px; color: #0056b3;">INSURANCE</span> --}}
         </div>
         <div style="float: right; width: 50%; text-align: center;">
-            <img src="{{ asset('images/logo.png') }}" class="signature-img">
+            <img src="{{ public_path('assets/images/logo.png') }}" class="signature-img">
         </div>
     </div>
 
@@ -360,6 +364,166 @@
         Legal notice: The insurer is Anker Insurance Company n.v. at Paterswoldseweg 812 at 9728 BM Groningen. Anker is
         registered with the Autoriteit Financiële Markten (AFM) (the Dutch Authority for the Financial Markets) under
         number 12000661 and is authorised by De Nederlandsche Bank ("DNB").
+    </div>
+    <div class="page-break"></div>
+
+    <div class="header clearfix">
+        <div class="logo">Inoodex</div>
+        <div class="e-doc-info">E-Dokument ausgestellt: {{ now()->format('d.m.Y H:i') }}</div>
+    </div>
+
+    <div class="row clearfix">
+        <div class="col">
+            <div class="section-header">Versicherungsnehmer</div>
+            <strong>{{ strtoupper($application->student->full_name) }}</strong><br>
+            {{ $application->student->institute_address }}<br>
+            PLA 1501 Tarxien<br>
+            (Malta)
+        </div>
+        <div class="col">
+            <div class="section-header">Korrespondenzadresse</div>
+            <strong>{{ strtoupper($application->student->full_name) }}</strong><br>
+            {{ $application->student->institute_address }}<br>
+            PLA 1501 Tarxien<br>
+            (Malta)
+        </div>
+        <div class="col">
+            {{-- <div class="section-header">Kontakt</div> --}}
+            E-Mail: {{ $application->student->email }}<br>
+            Telefonnummer: {{ $application->student->phone_number ?? '+35677775386' }}
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <div class="section-header">Versicherte Person</div>
+        {{ strtoupper($application->student->full_name) }} | {{ ucfirst($application->student->gender) }} |
+        {{ $application->student->date_of_birth->format('d.m.Y') }} | {{ $application->student->passport_number }} |
+        Staatsangehoerigkeit: {{ $application->student->nationality }} | Herkunftsland:
+        {{ $application->student->country_of_origin }}
+    </div>
+
+    <div class="policy-title">{{ $application->plan->plan_name }}</div>
+    <div class="policy-number">Police {{ $application->policy_number }}</div>
+
+    <div class="benefits-title">Leistungsuebersicht</div>
+    <table class="benefit-table">
+        <tr class="shade">
+            <th width="27%">Tarifstufe</th>
+            <td width="43%">Standard</td>
+            <td width="30%"></td>
+        </tr>
+        <tr class="white">
+            <th>Erstes Reiseziel</th>
+            <td colspan="2">Malta</td>
+        </tr>
+        <tr class="shade">
+            <th>Gebiete</th>
+            <td>Weltweit ohne US-Gebiete, Kanada und Herkunftsland</td>
+            <td>Schengen-Laender sind eingeschlossen</td>
+        </tr>
+        <tr class="shade">
+            <th>Hinweis</th>
+            <td>Keine Selbstbeteiligung fuer medizinische Deckung</td>
+            <td>Es gelten keine Wartezeiten</td>
+        </tr>
+        <tr class="shade">
+            <th>Medizinische Deckung</th>
+            <td class="amount">Max. {{ $amt('medical_cover') }}</td>
+            <td class="detail">
+                Medizinische Notfallversorgung<br>
+                Krankheit und Unfall<br>
+                Stationaere / ambulante Behandlung<br>
+                Allgemeinaerzte und Fachaerzte<br>
+                Verschreibungspflichtige Medikamente
+            </td>
+        </tr>
+        <tr class="white">
+            <th>See- und Bergrettung</th>
+            <td class="amount">Max. {{ $amt('sea_mountain_rescue') }}</td>
+            <td></td>
+        </tr>
+        <tr class="shade">
+            <th>Medizinische Notfallevakuierung</th>
+            <td class="amount">Max. {{ $amt('emergency_evacuation') }}</td>
+            <td rowspan="2" class="shade-cell">Per Luft, Land oder See</td>
+        </tr>
+        <tr class="shade">
+            <th>Medizinische Rueckfuehrung</th>
+            <td class="amount">Max. {{ $amt('medical_repatriation') }}</td>
+        </tr>
+        <tr class="white">
+            <th>Rueckfuehrung sterblicher Ueberreste</th>
+            <td class="amount">Max. {{ $amt('repatriation_mortal_remains') }}</td>
+            <td></td>
+        </tr>
+        <tr class="shade">
+            <th>Gepaeck</th>
+            <td class="amount">Max. {{ $amt('luggage') }}</td>
+            <td class="detail">
+                Verlust, Beschaedigung, Raub oder Diebstahl von Gepaeck<br><br>
+                (Selbstbeteiligung von EUR 250.00 pro Schadenfall)
+            </td>
+        </tr>
+        <tr class="white">
+            <th>Unfalltod</th>
+            <td class="amount">Max. {{ $amt('accidental_death') }}</td>
+            <td rowspan="2">Pauschalbetrag</td>
+        </tr>
+        <tr class="white">
+            <th>Unfallinvaliditaet</th>
+            <td class="amount">Max. {{ $amt('accidental_disability') }}</td>
+        </tr>
+        <tr class="shade">
+            <th>Haftpflicht gegenueber Dritten</th>
+            <td colspan="2" class="amount">Max. {{ $amt('third_party_liability') }}</td>
+        </tr>
+    </table>
+
+    <div class="footer-info">
+        <table class="footer-table">
+            <thead>
+                <tr>
+                    <th>Von</th>
+                    <th>Bis</th>
+                    <th>Dauer</th>
+                    <th>Praemie</th>
+                    <th>Bezahlt am</th>
+                    <th>GIC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $application->start_date->format('d.m.Y') }}</td>
+                    <td>{{ $application->end_date->format('d.m.Y') }}</td>
+                    <td>{{ $application->duration_days }} Tage</td>
+                    <td>{{ $application->currency }} {{ number_format($application->premium_amount, 2) }}</td>
+                    <td>{{ $application->paid_on ? $application->paid_on->format('d.m.Y') : 'N/A' }}</td>
+                    <td>{{ $application->gic_reference ?? 'ISIE-GIC-012026' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="text-align: center; margin-top: 15px; font-weight: bold;">
+        Der Versicherer zahlt den medizinischen Leistungserbringer direkt, falls dies gesetzlich erforderlich ist.<br>
+        Alarm-Service (nur fuer Notfaelle, 24/7): + 31 50 520 9780
+    </div>
+
+    <div class="signature-section clearfix">
+        <div style="float: left; width: 50%; text-align: center;">
+            <img src="{{ public_path('assets/images/logo.png') }}" class="signature-img"><br>
+            {{-- <span style="font-size: 8px; font-weight: bold; color: #0056b3;">ANKER</span><br>
+            <span style="font-size: 7px; color: #0056b3;">INSURANCE</span> --}}
+        </div>
+        <div style="float: right; width: 50%; text-align: center;">
+            <img src="{{ public_path('assets/images/logo.png') }}" class="signature-img">
+        </div>
+    </div>
+
+    <div class="legal-notice">
+        Rechtlicher Hinweis: Der Versicherer ist Anker Insurance Company n.v. mit Sitz am Paterswoldseweg 812,
+        9728 BM Groningen. Anker ist bei der Autoriteit Financiele Markten (AFM), der niederlaendischen
+        Finanzmarktaufsicht, unter der Nummer 12000661 registriert und von De Nederlandsche Bank ("DNB") zugelassen.
     </div>
 </body>
 

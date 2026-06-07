@@ -30,32 +30,20 @@
             </div>
         </div>
 
-        @if(session('success'))
-            <div class="alert alert-success mb-6">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if(session('error'))
-            <div class="alert alert-danger mb-6">
-                {{ session('error') }}
-            </div>
-        @endif
-
         <!-- Profile Detail Cards Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Profile Card -->
             <div class="lg:col-span-1 flex flex-col gap-6">
                 <!-- Main Widget Panel -->
-                <div class="panel text-center flex flex-col items-center p-6 relative overflow-hidden" 
+                <div class="panel text-center flex flex-col items-center p-6 relative overflow-hidden"
                      style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(99, 102, 241, 0.05)); border: 1px solid rgba(59, 130, 246, 0.15);">
                     <div class="h-24 w-24 rounded-full flex items-center justify-center text-4xl font-bold bg-indigo-600/10 text-indigo-600 dark:text-indigo-400 border-4 border-white dark:border-slate-800 shadow-md">
                         {{ strtoupper(substr($student->full_name, 0, 2)) }}
                     </div>
-                    
+
                     <h3 class="text-xl font-bold text-slate-800 dark:text-white mt-4">{{ $student->full_name }}</h3>
                     <p class="text-xs font-semibold text-slate-400 dark:text-slate-500 mb-4">{{ $student->email }}</p>
-                    
+
                     <div class="flex flex-wrap gap-2 justify-center mb-6">
                         @if($student->password_changed)
                             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
@@ -80,10 +68,10 @@
                     </div>
                 </div>
 
-                {{-- <!-- Account Security Settings Panel -->
+                 <!-- Account Security Settings Panel -->
                 <div class="panel p-6 flex flex-col gap-4" style="border: 1px solid rgba(139, 92, 246, 0.15);">
                     <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">Portal Access</h4>
-                    
+
                     @if(!$student->password_changed && $student->temporary_password)
                         <div class="p-3 bg-amber-50 dark:bg-amber-950/20 text-amber-800 dark:text-amber-400 rounded-xl border border-amber-200/50 dark:border-amber-900/30 text-xs">
                             <div class="font-bold mb-1">Temporary Password:</div>
@@ -98,7 +86,7 @@
                             Resend Access Email
                         </button>
                     </form>
-                </div> --}}
+                </div>
             </div>
 
             <!-- Profile Info Grid -->
@@ -109,7 +97,7 @@
                         <span class="h-4 w-1 rounded-full bg-blue-600"></span>
                         <h4 class="font-bold uppercase tracking-wider text-slate-800 dark:text-white text-xs">Personal Information</h4>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Date of Birth</span>
@@ -144,7 +132,7 @@
                         <span class="h-4 w-1 rounded-full bg-purple-600"></span>
                         <h4 class="font-bold uppercase tracking-wider text-slate-800 dark:text-white text-xs">Academic & Institution Details</h4>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 gap-6">
                         <div>
                             <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Institute Name</span>
@@ -167,7 +155,7 @@
                         <span class="h-4 w-1 rounded-full bg-slate-500"></span>
                         <h4 class="font-bold uppercase tracking-wider text-slate-800 dark:text-white text-xs">System Records</h4>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-slate-400">
                         <div>
                             <span>Registered On:</span>

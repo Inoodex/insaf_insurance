@@ -8,12 +8,6 @@
         <a href="{{ route('admin.claims.index') }}" class="btn btn-outline-primary">Back to List</a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success mt-4">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <!-- Main Claim Info -->
         <div class="panel lg:col-span-2">

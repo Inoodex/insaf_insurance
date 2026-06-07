@@ -18,16 +18,10 @@
         </div>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success mt-4">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="panel mt-6">
-        <div class="mb-5 flex flex-col gap-5 md:flex-row md:items-center">
-            <form action="{{ route('admin.applications.index') }}" method="GET" class="flex flex-1 flex-col gap-5 md:flex-row md:items-center w-full">
-                <div class="relative w-full md:w-[405px]">
+        <div class="mb-5 flex flex-col gap-3 md:flex-row md:items-center">
+            <form action="{{ route('admin.applications.index') }}" method="GET" class="flex w-full flex-col gap-2 md:flex-row md:items-center">
+                <div class="relative min-w-0 flex-1">
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Search Student Name, Passport or Policy..." class="form-input ltr:pr-11 rtl:pl-11" />
                     <button type="submit" class="absolute inset-y-0 flex items-center hover:text-primary ltr:right-4 rtl:left-4">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,16 +30,16 @@
                         </svg>
                     </button>
                 </div>
-                <div class="flex gap-2">
-                    <select name="status" class="form-select w-full md:w-40 pr-10">
-                        <option value="">All Status</option>
+                <div class="flex shrink-0 gap-2">
+                    <select name="status" class="form-select pr-10">
+                        <option value="">Status</option>
                         <option value="draft" {{ request('status') == 'draft' ? 'selected' : '' }}>Draft</option>
                         <option value="sent" {{ request('status') == 'sent' ? 'selected' : '' }}>Sent</option>
                         <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
                         <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>Expired</option>
                         <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                     </select>
-                    <button type="submit" class="btn btn-primary">Filter</button>
+                    <button type="submit" class="btn btn-sm btn-primary shrink-0">Filter</button>
                 </div>
             </form>
         </div>
@@ -98,6 +92,14 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="flex items-center justify-center gap-2">
+                                        @if(!in_array($application->status, ['expired', 'cancelled']))
+                                            <form action="{{ route('admin.applications.send-email', $application->id) }}" method="POST" class="inline" onsubmit="return confirm('{{ $application->status === 'draft' ? 'This will generate a policy number, mark the application as Sent, and email the billing summary to the student. Continue?' : 'Send the policy-issued email with billing summary to the student?' }}');">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-outline-info" title="Send Policy Email">
+                                                    {{ $application->status === 'draft' ? 'Issue & Email' : 'Email Application' }}
+                                                </button>
+                                            </form>
+                                        @endif
                                         <a href="{{ route('admin.applications.show', $application->id) }}" class="btn btn-sm btn-outline-info">View</a>
                                         <a href="{{ route('admin.applications.edit', $application->id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
                                         <form action="{{ route('admin.applications.destroy', $application->id) }}" method="POST" onsubmit="return confirm('Delete this application?');" class="inline">

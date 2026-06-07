@@ -8,9 +8,27 @@ use Illuminate\Http\Request;
 
 class InsurancePlanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $plans = InsurancePlan::latest()->paginate(15);
+        $query = InsurancePlan::query();
+
+        if ($search = $request->string('search')->toString()) {
+            $query->where(function ($q) use ($search) {
+                $q->where('plan_name', 'like', "%{$search}%")
+                  ->orWhere('territories', 'like', "%{$search}%");
+            });
+        }
+
+        if ($level = $request->string('level')->toString()) {
+            $query->where('plan_level', $level);
+        }
+
+        if ($request->has('status') && $request->status !== '') {
+            $query->where('is_active', $request->status === 'active');
+        }
+
+        $plans = $query->latest()->paginate(15)->withQueryString();
+
         return view('admin.plans.index', compact('plans'));
     }
 
@@ -45,6 +63,13 @@ class InsurancePlanController extends Controller
         InsurancePlan::create($validated);
 
         return redirect()->route('admin.plans.index')->with('success', 'Insurance plan created successfully.');
+    }
+
+    public function show(InsurancePlan $plan)
+    {
+        $plan->loadCount('applications');
+
+        return view('admin.plans.show', compact('plan'));
     }
 
     public function edit(InsurancePlan $plan)

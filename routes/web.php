@@ -74,6 +74,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     
     // Insurance Applications
     Route::resource('applications', InsuranceApplicationController::class)->names('admin.applications');
+    Route::post('applications/{application}/issue', [InsuranceApplicationController::class, 'issue'])->name('admin.applications.issue');
+    Route::post('applications/{application}/send-email', [InsuranceApplicationController::class, 'sendEmail'])->name('admin.applications.send-email');
 
     // Claims Management
     Route::get('claims', [App\Http\Controllers\Admin\ClaimController::class, 'index'])->name('admin.claims.index');

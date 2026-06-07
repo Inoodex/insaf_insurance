@@ -2,6 +2,44 @@
 
 @section('title', 'New Insurance Application')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/nice-select2.css') }}" />
+<style>
+    .nice-select,
+    .nice-select:hover,
+    .nice-select:focus,
+    .nice-select.open,
+    .nice-select:active {
+        width: 100%;
+        float: none;
+        height: auto;
+        min-height: 42px;
+        line-height: 1.5;
+        font-size: 1rem;
+        padding: 0.5rem 2.25rem 0.5rem 0.75rem;
+        border-radius: 0;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #e0e6ed !important;
+        background-color: #fff;
+        background-image: none;
+        color: inherit;
+    }
+    .nice-select:focus,
+    .nice-select.open {
+        border-color: #4361ee !important;
+        box-shadow: 0 0 0 1px #4361ee;
+    }
+    .nice-select .current {
+        display: block;
+        line-height: 1.5;
+    }
+    .nice-select .list {
+        max-height: 260px;
+    }
+</style>
+@endpush
+
 @section('content')
     <div class="flex flex-wrap items-center justify-between gap-4">
         <h2 class="text-xl font-semibold uppercase">New Insurance Application</h2>
@@ -86,4 +124,12 @@
             </div>
         </form>
     </div>
+@push('page-scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        NiceSelect.bind(document.getElementById('student_id'), { searchable: true });
+        NiceSelect.bind(document.getElementById('plan_id'), { searchable: true });
+    });
+</script>
+@endpush
 @endsection

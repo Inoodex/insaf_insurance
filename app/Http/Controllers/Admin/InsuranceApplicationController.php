@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ApplicationIssuedMail;
+use App\Models\BenefitCoverage;
+use App\Models\EmailLog;
 use App\Models\InsuranceApplication;
 use App\Models\InsurancePlan;
 use App\Models\Student;
-use App\Models\BenefitCoverage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class InsuranceApplicationController extends Controller
@@ -117,6 +120,8 @@ class InsuranceApplicationController extends Controller
             'notes' => 'nullable|string',
         ]);
 
+        $oldStatus = $application->status;
+
         // Recalculate duration if dates changed
         $start = new \DateTime($request->start_date);
         $end = new \DateTime($request->end_date);
@@ -130,7 +135,96 @@ class InsuranceApplicationController extends Controller
 
         $application->update($validated);
 
+        // On draft -> sent transition, send the policy-issued email (dedup-guarded + queued)
+        if ($oldStatus !== 'sent' && $application->status === 'sent' && $application->policy_number) {
+            $this->sendPolicyIssuedNotification($application);
+        }
+
         return redirect()->route('admin.applications.index')->with('success', 'Application updated successfully.');
+    }
+
+    public function issue(InsuranceApplication $application)
+    {
+        if ($application->status !== 'draft') {
+            return redirect()->route('admin.applications.show', $application->id)
+                ->with('error', 'Only draft applications can be issued.');
+        }
+
+        $application->policy_number = $application->policy_number ?? 'ISIE-' . strtoupper(Str::random(6));
+        $application->status = 'sent';
+        $application->save();
+
+        $this->sendPolicyIssuedNotification($application);
+
+        return redirect()->route('admin.applications.show', $application->id)
+            ->with('success', 'Policy ' . $application->policy_number . ' has been issued and emailed to the student.');
+    }
+
+    public function sendEmail(InsuranceApplication $application)
+    {
+        if (in_array($application->status, ['expired', 'cancelled'], true)) {
+            return back()->with('error', 'Cannot email a policy that is ' . $application->status . '.');
+        }
+
+        if (!$application->policy_number) {
+            $application->policy_number = 'ISIE-' . strtoupper(Str::random(6));
+        }
+
+        $wasAlreadySent = $application->status === 'sent';
+        $application->status = 'sent';
+
+        $this->sendPolicyIssuedNotification($application, force: true);
+
+        if (!$wasAlreadySent) {
+            $application->save();
+        }
+
+        return back()->with('success', 'Policy email sent to ' . $application->student->email . '.');
+    }
+
+    private function sendPolicyIssuedNotification(InsuranceApplication $application, bool $force = false): void
+    {
+        if (!$force) {
+            $alreadySent = EmailLog::where('application_id', $application->id)
+                ->where('email_type', 'policy_issued')
+                ->where('status', 'sent')
+                ->exists();
+
+            if ($alreadySent) {
+                return;
+            }
+        }
+
+        $application->loadMissing(['student', 'plan', 'benefitCoverages']);
+
+        $subject = 'Your Insurance Policy ' . $application->policy_number . ' Has Been Issued';
+
+        try {
+            Mail::to($application->student->email)
+                ->send(new ApplicationIssuedMail($application));
+
+            EmailLog::create([
+                'student_id' => $application->student_id,
+                'application_id' => $application->id,
+                'user_id' => Auth::id(),
+                'email_type' => 'policy_issued',
+                'subject' => $subject,
+                'recipient_email' => $application->student->email,
+                'status' => 'sent',
+                'sent_at' => now(),
+            ]);
+        } catch (\Exception $e) {
+            EmailLog::create([
+                'student_id' => $application->student_id,
+                'application_id' => $application->id,
+                'user_id' => Auth::id(),
+                'email_type' => 'policy_issued',
+                'subject' => $subject,
+                'recipient_email' => $application->student->email,
+                'status' => 'failed',
+                'error_message' => $e->getMessage(),
+            ]);
+        }
     }
 
     public function destroy(InsuranceApplication $application)
