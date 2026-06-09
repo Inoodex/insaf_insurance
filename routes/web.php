@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingController;
 
 Route::get('/', function () {
-    return redirect()->route('tyro-login.login');
+    return redirect()->route('student.login');
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('tyro-dashboard.index');

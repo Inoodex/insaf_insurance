@@ -103,7 +103,7 @@ return [
     'routes' => [
         'prefix' => env('TYRO_LOGIN_ROUTE_PREFIX', ''),
         'middleware' => ['web'],
-        'login' => 'login',
+        'login' => 'admin/login',
         'logout' => 'logout',
         'register' => 'register',
     ],
@@ -117,8 +117,8 @@ return [
     |
     */
     'redirects' => [
-        'after_login' => env('TYRO_LOGIN_REDIRECT_AFTER_LOGIN', '/'),
-        'after_logout' => env('TYRO_LOGIN_REDIRECT_AFTER_LOGOUT', '/login'),
+        'after_login' => env('TYRO_LOGIN_REDIRECT_AFTER_LOGIN', '/dashboard'),
+        'after_logout' => env('TYRO_LOGIN_REDIRECT_AFTER_LOGOUT', '/admin/login'),
         'after_register' => env('TYRO_LOGIN_REDIRECT_AFTER_REGISTER', '/'),
         'after_email_verification' => env('TYRO_LOGIN_REDIRECT_AFTER_EMAIL_VERIFICATION', '/login'),
     ],
