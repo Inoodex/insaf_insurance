@@ -19,7 +19,7 @@
     </li>
 
     <!-- Administration -->
-    @if(auth()->user()->hasRole('admin'))
+    @if(auth()->user()->hasRole('super-admin'))
         <li class="menu nav-item relative">
             <a href="javascript:;" class="nav-link">
                 <div class="flex items-center">

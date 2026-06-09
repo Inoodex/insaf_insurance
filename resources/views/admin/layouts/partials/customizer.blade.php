@@ -94,11 +94,11 @@
                 <h5 class="mb-1 text-base leading-none dark:text-white">Navigation Position</h5>
                 <p class="text-xs text-white-dark">Select the primary navigation paradigm for your app.</p>
                 <div class="mt-3 grid grid-cols-3 gap-2">
-                    <button type="button" class="btn"
+                    {{-- <button type="button" class="btn"
                         :class="[$store.app.menu === 'horizontal' ? 'btn-primary' :'btn-outline-primary']"
                         @click="$store.app.toggleMenu('horizontal')">
                         Horizontal
-                    </button>
+                    </button> --}}
                     <button type="button" class="btn"
                         :class="[$store.app.menu === 'vertical' ? 'btn-primary' :'btn-outline-primary']"
                         @click="$store.app.toggleMenu('vertical')">
