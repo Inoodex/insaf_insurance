@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SettingController;
 
-Route::get('/', function () {
-    return redirect()->route('student.login');
-});
+Route::get('/', [\App\Http\Controllers\Student\Auth\LoginController::class, 'showLoginForm']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('tyro-dashboard.index');
 
@@ -40,7 +38,7 @@ use App\Http\Controllers\Student\PolicyController as StudentPolicyController;
 use App\Http\Controllers\Student\ClaimController as StudentClaimController;
 
 // Student Routes
-Route::prefix('student')->group(function () {
+
     Route::get('login', [StudentLoginController::class, 'showLoginForm'])->name('student.login');
     Route::post('login', [StudentLoginController::class, 'login']);
     Route::post('logout', [StudentLoginController::class, 'logout'])->name('student.logout');
@@ -50,6 +48,16 @@ Route::prefix('student')->group(function () {
     Route::get('reset-password/{token}', [\App\Http\Controllers\Student\Auth\ForgotPasswordController::class, 'showResetForm'])->name('student.password.reset');
     Route::post('reset-password', [\App\Http\Controllers\Student\Auth\ForgotPasswordController::class, 'reset'])->name('student.password.update');
 
+// Admin password reset routes (for admin login page)
+use HasinHayder\TyroLogin\Http\Controllers\PasswordResetController;
+Route::prefix('admin')->name('tyro-login.')->group(function () {
+    Route::get('forgot-password', [PasswordResetController::class, 'showForgotPasswordForm'])->name('password.request');
+    Route::post('forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+    Route::get('reset-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+    Route::post('reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
+});
+
+Route::prefix('student')->group(function () {
     Route::middleware(['auth:student'])->group(function () {
         Route::get('dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
         Route::get('profile', [StudentProfileController::class, 'index'])->name('student.profile');

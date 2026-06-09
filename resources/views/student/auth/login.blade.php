@@ -44,7 +44,7 @@
         <div class="w-full md:w-1/2 flex flex-col items-center justify-center p-12">
             <div class="w-full max-w-sm">
                 <div class="text-center mb-12">
-                    <h3 class="text-3xl font-bold text-[#4A3B75] lowercase">{{ config('app.name') }}</h3>
+                    <h3 class="text-3xl font-bold text-[#4A3B75] uppercase">{{ config('app.name') }}</h3>
                 </div>
 
                 <form action="{{ route('student.login') }}" method="POST">
