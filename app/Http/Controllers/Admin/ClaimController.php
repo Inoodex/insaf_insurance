@@ -10,13 +10,12 @@ class ClaimController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Claim::with(['student', 'application.plan']);
+        $query = Claim::query();
 
         if ($request->filled('search')) {
             $search = $request->search;
             $query->whereHas('student', function ($q) use ($search) {
-                $q->where('first_name', 'like', "%{$search}%")
-                  ->orWhere('last_name', 'like', "%{$search}%")
+                $q->where('full_name', 'like', "%{$search}%")
                   ->orWhere('passport_number', 'like', "%{$search}%");
             })->orWhere('claim_number', 'like', "%{$search}%");
         }
@@ -31,7 +30,7 @@ class ClaimController extends Controller
 
     public function show(Claim $claim)
     {
-        $claim->load(['student', 'application.plan', 'documents']);
+        $claim->load(['student', 'application', 'application.plan', 'documents']);
         return view('admin.claims.show', compact('claim'));
     }
 
@@ -49,5 +48,11 @@ class ClaimController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Claim has been ' . $validated['status'] . ' successfully.');
+    }
+
+    public function destroy(Claim $claim)
+    {
+        $claim->delete();
+        return redirect()->route('admin.claims.index')->with('success', 'Claim deleted successfully.');
     }
 }

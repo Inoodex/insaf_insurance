@@ -12,8 +12,7 @@ class PolicyController extends Controller
 {
     public function show(InsuranceApplication $application)
     {
-        // Ensure student can only view their own policies
-        if ($application->student_id !== Auth::guard('student')->id()) {
+        if ($application->student_id != Auth::guard('student')->id()) {
             abort(403);
         }
 
@@ -23,7 +22,7 @@ class PolicyController extends Controller
 
     public function finance(InsuranceApplication $application)
     {
-        if ($application->student_id !== Auth::guard('student')->id()) {
+        if ($application->student_id != Auth::guard('student')->id()) {
             abort(403);
         }
 
@@ -32,7 +31,7 @@ class PolicyController extends Controller
 
     public function download(InsuranceApplication $application)
     {
-        if ($application->student_id !== Auth::guard('student')->id()) {
+        if ($application->student_id != Auth::guard('student')->id()) {
             abort(403);
         }
 

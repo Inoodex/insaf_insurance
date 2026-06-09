@@ -15,7 +15,7 @@
                 </svg>
                 Back to List
             </a>
-            @if($application->status === 'draft')
+            {{-- @if($application->status === 'draft')
                 <form action="{{ route('admin.applications.issue', $application->id) }}" method="POST"
                     onsubmit="return confirm('Issue this policy now? A confirmation email with the billing summary will be sent to the student.');"
                     class="inline">
@@ -30,7 +30,7 @@
                         Issue Policy
                     </button>
                 </form>
-            @endif
+            @endif --}}
             <a href="{{ route('admin.applications.edit', $application->id) }}" class="btn btn-primary gap-2" aria-label="Edit application">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -94,6 +94,14 @@
                 <div>
                     <span class="text-white-dark block">Premium</span>
                     <span class="font-bold text-success">{{ $application->currency }} {{ number_format($application->premium_amount, 2) }}</span>
+                </div>
+                <div>
+                    <span class="text-white-dark block">Payment</span>
+                    @if($application->paid_on)
+                        <span class="badge badge-outline-success">Paid on {{ $application->paid_on->format('d M Y') }}</span>
+                    @else
+                        <span class="badge badge-outline-warning">Unpaid</span>
+                    @endif
                 </div>
             </div>
         </div>

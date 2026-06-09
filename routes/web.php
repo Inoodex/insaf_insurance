@@ -90,9 +90,11 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('applications', InsuranceApplicationController::class)->names('admin.applications');
     Route::post('applications/{application}/issue', [InsuranceApplicationController::class, 'issue'])->name('admin.applications.issue');
     Route::post('applications/{application}/send-email', [InsuranceApplicationController::class, 'sendEmail'])->name('admin.applications.send-email');
+    Route::post('applications/{application}/mark-paid', [InsuranceApplicationController::class, 'markAsPaid'])->name('admin.applications.mark-paid');
 
     // Claims Management
     Route::get('claims', [App\Http\Controllers\Admin\ClaimController::class, 'index'])->name('admin.claims.index');
     Route::get('claims/{claim}', [App\Http\Controllers\Admin\ClaimController::class, 'show'])->name('admin.claims.show');
     Route::post('claims/{claim}/process', [App\Http\Controllers\Admin\ClaimController::class, 'process'])->name('admin.claims.process');
+    Route::delete('claims/{claim}', [App\Http\Controllers\Admin\ClaimController::class, 'destroy'])->name('admin.claims.destroy');
 });

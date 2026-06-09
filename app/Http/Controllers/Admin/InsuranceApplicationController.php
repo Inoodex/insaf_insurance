@@ -220,6 +220,18 @@ class InsuranceApplicationController extends Controller
         }
     }
 
+    public function markAsPaid(InsuranceApplication $application)
+    {
+        if ($application->paid_on) {
+            return back()->with('error', 'This application is already marked as paid.');
+        }
+
+        $application->paid_on = now();
+        $application->save();
+
+        return back()->with('success', 'Application marked as paid successfully.');
+    }
+
     public function destroy(InsuranceApplication $application)
     {
         $application->delete();

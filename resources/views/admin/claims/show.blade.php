@@ -5,7 +5,21 @@
 @section('content')
     <div class="flex flex-wrap items-center justify-between gap-4">
         <h2 class="text-xl font-semibold uppercase">Claim: {{ $claim->claim_number }}</h2>
-        <a href="{{ route('admin.claims.index') }}" class="btn btn-outline-primary">Back to List</a>
+        <div class="flex items-center gap-2">
+           <a href="{{ route('admin.claims.index') }}" class="btn btn-secondary gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Back to List
+                </a>
+            {{-- <form action="{{ route('admin.claims.destroy', $claim->id) }}" method="POST" onsubmit="return confirm('Delete this claim? This action cannot be undone.')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </form> --}}
+        </div>
     </div>
 
     <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -93,21 +107,21 @@
                 <h5 class="mb-4 text-lg font-semibold">Student Information</h5>
                 <div class="flex items-center gap-4">
                     <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-xl font-bold text-primary">
-                        {{ substr($claim->student->first_name, 0, 1) }}{{ substr($claim->student->last_name, 0, 1) }}
+                        {{ optional($claim->student)->full_name ? substr(optional($claim->student)->full_name, 0, 1) : '?' }}
                     </div>
                     <div>
-                        <p class="font-semibold">{{ $claim->student->full_name }}</p>
-                        <p class="text-sm text-white-dark">{{ $claim->student->email }}</p>
+                        <p class="font-semibold">{{ optional($claim->student)->full_name }}</p>
+                        <p class="text-sm text-white-dark">{{ optional($claim->student)->email }}</p>
                     </div>
                 </div>
                 <div class="mt-4 space-y-2 text-sm">
                     <div class="flex justify-between">
                         <span class="text-white-dark">Passport:</span>
-                        <span class="font-semibold">{{ $claim->student->passport_number }}</span>
+                        <span class="font-semibold">{{ optional($claim->student)->passport_number }}</span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-white-dark">Nationality:</span>
-                        <span class="font-semibold">{{ $claim->student->nationality }}</span>
+                        <span class="font-semibold">{{ optional($claim->student)->nationality }}</span>
                     </div>
                 </div>
                 <hr class="my-4 border-[#ebedf2] dark:border-[#1b2e4b]">
@@ -115,11 +129,11 @@
                 <div class="mt-2 space-y-2 text-sm">
                     <div class="flex justify-between">
                         <span class="text-white-dark">Policy #:</span>
-                        <span class="font-mono font-bold text-primary">{{ $claim->application->policy_number }}</span>
+                        <span class="font-mono font-bold text-primary">{{ optional($claim->application)->policy_number }}</span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-white-dark">Plan:</span>
-                        <span class="font-semibold">{{ $claim->application->plan->plan_name }}</span>
+                        <span class="font-semibold">{{ optional(optional($claim->application)->plan)->plan_name }}</span>
                     </div>
                 </div>
             </div>

@@ -168,7 +168,8 @@
         }
 
         .signature-img {
-            height: 40px;
+            width: 250px;
+            height: auto;
         }
 
         .legal-notice {
@@ -237,7 +238,7 @@
         <!-- Plan level -->
         <tr class="shade">
             <th width="27%">Plan level</th>
-            <td width="43%">Standard</td>
+            <td width="43%"></td>
             <td width="30%"></td>
         </tr>
         <!-- First destination -->
@@ -252,7 +253,7 @@
             <td>Schengen countries are included</td>
         </tr>
         <!-- Notification -->
-        <tr class="shade">
+        <tr class="white">
             <th>Notification</th>
             <td>No deductible/excess for medical cover</td>
             <td>No waiting periods are applied</td>
@@ -350,14 +351,14 @@
     </div>
 
     <div class="signature-section clearfix">
-        <div style="float: left; width: 50%; text-align: center;">
-            <img src="{{ public_path('assets/images/logo.png') }}" class="signature-img"><br>
+        <div style="float: left; width: 100%; text-align: center;">
+            <img src="{{ public_path('assets/images/screenshot.png') }}" class="signature-img"><br>
             {{-- <span style="font-size: 8px; font-weight: bold; color: #0056b3;">ANKER</span><br>
             <span style="font-size: 7px; color: #0056b3;">INSURANCE</span> --}}
         </div>
-        <div style="float: right; width: 50%; text-align: center;">
+        {{-- <div style="float: right; width: 50%; text-align: center;">
             <img src="{{ public_path('assets/images/logo.png') }}" class="signature-img">
-        </div>
+        </div> --}}
     </div>
 
     <div class="legal-notice">
@@ -421,7 +422,7 @@
             <td>En todo el mundo, excluidos los territorios de EE.UU., Canadá y el país de origen</td>
             <td>Países Schengen incluidos</td>
         </tr>
-        <tr class="shade">
+        <tr class="white">
             <th>Aviso</th>
             <td>Seguro sin copago para la cobertura médica</td>
             <td>Sin período de carencia</td>
@@ -510,14 +511,14 @@
     </div>
 
     <div class="signature-section clearfix">
-        <div style="float: left; width: 50%; text-align: center;">
-            <img src="{{ public_path('assets/images/logo.png') }}" class="signature-img"><br>
+        <div style="float: left; width: 100%; text-align: center;">
+            <img src="{{ public_path('assets/images/screenshot.png') }}" class="signature-img"><br>
             {{-- <span style="font-size: 8px; font-weight: bold; color: #0056b3;">ANKER</span><br>
             <span style="font-size: 7px; color: #0056b3;">INSURANCE</span> --}}
         </div>
-        <div style="float: right; width: 50%; text-align: center;">
+        {{-- <div style="float: right; width: 50%; text-align: center;">
             <img src="{{ public_path('assets/images/logo.png') }}" class="signature-img">
-        </div>
+        </div> --}}
     </div>
 
     <div class="legal-notice">

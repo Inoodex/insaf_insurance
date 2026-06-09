@@ -53,12 +53,12 @@
                                     <div class="text-xs text-white-dark capitalize">{{ $claim->claim_type }}</div>
                                 </td>
                                 <td>
-                                    <div class="font-semibold">{{ $claim->student->full_name }}</div>
-                                    <div class="text-xs text-white-dark">{{ $claim->student->passport_number }}</div>
+                                    <div class="font-semibold">{{ optional($claim->student)->full_name }}</div>
+                                    <div class="text-xs text-white-dark">{{ optional($claim->student)->passport_number }}</div>
                                 </td>
                                 <td>
-                                    <div class="text-sm font-semibold">{{ $claim->application->policy_number }}</div>
-                                    <div class="text-xs text-white-dark">{{ $claim->application->plan->plan_name }}</div>
+                                    <div class="text-sm font-semibold">{{ optional($claim->application)->policy_number }}</div>
+                                    <div class="text-xs text-white-dark">{{ optional(optional($claim->application)->plan)->plan_name }}</div>
                                 </td>
                                 <td>{{ $claim->event_date->format('d M Y') }}</td>
                                 <td class="font-bold">
@@ -77,7 +77,14 @@
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.claims.show', $claim->id) }}" class="btn btn-sm btn-outline-info">View & Process</a>
+                                    <div class="flex items-center justify-center gap-1">
+                                        <a href="{{ route('admin.claims.show', $claim->id) }}" class="btn btn-sm btn-outline-info">View & Process</a>
+                                        <form action="{{ route('admin.claims.destroy', $claim->id) }}" method="POST" onsubmit="return confirm('Delete this claim? This action cannot be undone.')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @empty

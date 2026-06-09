@@ -51,8 +51,9 @@
                         <tr>
                             <th>Student</th>
                             <th>Policy Number</th>
-                            <th>Plan</th>
-                            <th>Duration</th>
+                            {{-- <th>Plan</th>
+                            <th>Duration</th> --}}
+                            <th>Payment</th>
                             <th>Status</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -71,10 +72,17 @@
                                         <span class="text-white-dark italic">Not Issued</span>
                                     @endif
                                 </td>
-                                <td>{{ $application->plan->plan_name }}</td>
+                                {{-- <td>{{ $application->plan->plan_name }}</td>
                                 <td>
                                     <div class="text-sm">{{ $application->start_date->format('d M Y') }}</div>
                                     <div class="text-xs text-white-dark">{{ $application->duration_days }} Days</div>
+                                </td> --}}
+                                <td>
+                                    @if($application->paid_on)
+                                        <span class="badge badge-outline-success">Paid {{ $application->paid_on->format('d M Y') }}</span>
+                                    @else
+                                        <span class="badge badge-outline-warning">Unpaid</span>
+                                    @endif
                                 </td>
                                 <td>
                                     @php
@@ -92,6 +100,17 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="flex items-center justify-center gap-2">
+                                        @if(!$application->paid_on)
+                                            <form action="{{ route('admin.applications.mark-paid', $application->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-outline-success" title="Mark as Paid">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline align-text-bottom">
+                                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                                    </svg>
+                                                    Pay
+                                                </button>
+                                            </form>
+                                        @endif
                                         @if(!in_array($application->status, ['expired', 'cancelled']))
                                             <form action="{{ route('admin.applications.send-email', $application->id) }}" method="POST" class="inline" onsubmit="return confirm('{{ $application->status === 'draft' ? 'This will generate a policy number, mark the application as Sent, and email the billing summary to the student. Continue?' : 'Send the policy-issued email with billing summary to the student?' }}');">
                                                 @csrf
@@ -112,7 +131,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">No insurance applications found.</td>
+                                <td colspan="7" class="text-center">No insurance applications found.</td>
                             </tr>
                         @endforelse
                     </tbody>

@@ -121,7 +121,7 @@ class ClaimController extends Controller
 
     public function show(Claim $claim)
     {
-        if ($claim->student_id !== Auth::guard('student')->id()) {
+        if ($claim->student_id != Auth::guard('student')->id()) {
             abort(403);
         }
 
