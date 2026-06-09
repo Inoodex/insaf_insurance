@@ -13,7 +13,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/perfect-scrollbar.min.css')}}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{asset('assets/css/style.css')}}" />
@@ -26,10 +26,71 @@
         [x-cloak] {
             display: none !important;
         }
+        .font-inter { font-family: 'Inter', sans-serif; }
+
+        /* === Sidebar Width reduction from 260px to 220px overrides === */
+        .sidebar {
+            width: 220px !important;
+        }
+        @media (min-width: 1024px) {
+            .main-container .main-content:where([dir=ltr],[dir=ltr] *) {
+                margin-left: 220px !important;
+            }
+            .main-container .main-content:where([dir=rtl],[dir=rtl] *) {
+                margin-right: 220px !important;
+            }
+            .vertical.toggle-sidebar .sidebar:where([dir=ltr],[dir=ltr] *) {
+                left: -220px !important;
+            }
+            .vertical.toggle-sidebar .sidebar:where([dir=rtl],[dir=rtl] *) {
+                right: -220px !important;
+            }
+            .vertical.toggle-sidebar .main-container .main-content:where([dir=ltr],[dir=ltr] *) {
+                margin-left: 0 !important;
+            }
+            .vertical.toggle-sidebar .main-container .main-content:where([dir=rtl],[dir=rtl] *) {
+                margin-right: 0 !important;
+            }
+        }
+        
+        /* Mobile / Tablet sidebar hidden state */
+        @media (max-width: 1023px) {
+            .sidebar:where([dir=ltr],[dir=ltr] *) {
+                left: -220px !important;
+            }
+            .sidebar:where([dir=rtl],[dir=rtl] *) {
+                right: -220px !important;
+            }
+            .toggle-sidebar .sidebar:where([dir=ltr],[dir=ltr] *) {
+                left: 0 !important;
+            }
+            .toggle-sidebar .sidebar:where([dir=rtl],[dir=rtl] *) {
+                right: 0 !important;
+            }
+        }
+
+        /* Collapsible vertical sidebar hover / active states on desktop */
+        .collapsible-vertical .sidebar:hover {
+            width: 220px !important;
+        }
+        .collapsible-vertical.toggle-sidebar .sidebar {
+            width: 220px !important;
+        }
+        @media (min-width: 1024px) {
+            .collapsible-vertical.toggle-sidebar .main-content {
+                width: calc(100% - 220px) !important;
+            }
+            .collapsible-vertical.toggle-sidebar .main-content:where([dir=ltr],[dir=ltr] *) {
+                margin-left: 220px !important;
+            }
+            .collapsible-vertical.toggle-sidebar .main-content:where([dir=rtl],[dir=rtl] *) {
+                margin-right: 220px !important;
+            }
+        }
     </style>
 </head>
 
-<body x-data="main" class="relative overflow-x-hidden font-nunito text-sm font-normal antialiased"
+<body x-data="main" class="relative overflow-x-hidden font-inter text-sm font-normal antialiased"
     :class="[ $store.app.sidebar ? 'toggle-sidebar' : '', $store.app.theme === 'dark' || $store.app.isDarkMode ?  'dark' : '', $store.app.menu, $store.app.layout,$store.app.rtlClass]">
     <!-- sidebar menu overlay -->
     <div x-cloak class="fixed inset-0 z-50 bg-[black]/60 lg:hidden" :class="{'hidden' : !$store.app.sidebar}"
@@ -275,7 +336,7 @@
         <!-- start sidebar section -->
         <div :class="{'dark text-white-dark' : $store.app.semidark}">
             <nav x-data="sidebar"
-                class="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
+                class="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[220px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
                 <div class="h-full bg-white dark:bg-[#0e1726]">
                     <div class="flex items-center justify-between px-4 py-3">
                         <a href="index.html" class="main-logo flex shrink-0 items-center">

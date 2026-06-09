@@ -45,7 +45,7 @@
                         <tr>
                             <th>Student Details</th>
                             <th>Passport</th>
-                            <th>Nationality</th>
+                            {{-- <th>Nationality</th> --}}
                             <th>Institute</th>
                             <th>Status</th>
                             <th class="text-center">Action</th>
@@ -58,14 +58,16 @@
                                     <div class="font-semibold">{{ $student->full_name }}</div>
                                     <div class="text-xs text-white-dark">{{ $student->email }}</div>
                                 </td>
-                                <td>{{ $student->passport_number }}</td>
-                                <td>{{ $student->nationality }}</td>
+                                <td><div class="font-semibold">{{ $student->passport_number }}</div>
+                                    <div class="text-xs text-white-dark"> {{ $student->nationality }}</div>
+                                </td>
+                                {{-- <td>{{ $student->nationality }}</td> --}}
                                 <td>
-                                    <div class="text-sm">{{ $student->institute_name }}</div>
+                                    <div class="text-sm">{{ Str::limit($student->institute_name, 20) }}</div>
                                 </td>
                                 <td>
                                     @if ($student->password_changed)
-                                        <span class="badge badge-outline-success">Active</span>
+                                        <span class="badge badge-outline-success">Active</span> 
                                     @else
                                         <span class="badge badge-outline-warning">Pending Login</span>
                                     @endif

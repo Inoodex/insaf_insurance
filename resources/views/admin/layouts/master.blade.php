@@ -10,20 +10,166 @@
         href="{{ get_setting('app_favicon') ? asset('storage/' . get_setting('app_favicon')) : asset('favicon.ico') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/perfect-scrollbar.min.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/style.css') }}" />
     <link defer rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/animate.css') }}" />
     @stack('styles')
     <style>
-        [x-cloak] {
-            display: none !important;
+        [x-cloak] { display: none !important; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+
+        /* === Primary color: Blue → Teal === */
+        .text-primary, .hover\:text-primary:hover,
+        .group:hover .group-hover\:text-primary,
+        :is(.dark) .dark\:text-primary,
+        :is(.dark) .dark\:hover\:text-primary:hover {
+            color: #14b8a6 !important;
         }
+        .bg-primary, .hover\:bg-primary:hover,
+        :is(.dark) .dark\:bg-primary,
+        :is(.dark) .dark\:hover\:bg-primary:hover,
+        .peer:checked ~ .peer-checked\:bg-primary,
+        .before\:bg-primary::before {
+            background-color: #14b8a6 !important;
+        }
+        .border-primary, .hover\:border-primary:hover,
+        :is(.dark) .dark\:border-primary {
+            border-color: #14b8a6 !important;
+        }
+        .ring-primary { --tw-ring-color: #14b8a6 !important; }
+        .text-primary\/10 { color: rgba(20, 184, 166, 0.1) !important; }
+
+        /* === Sidebar: dark in light mode === */
+        .sidebar > ul > li > a,
+        .sidebar > ul > li > button,
+        .sidebar > ul > li > a span,
+        .sidebar > ul > li > button span {
+            color: #f1f5f9 !important;
+        }
+        .sidebar .sub-menu a,
+        .sidebar .sub-menu a span {
+            color: #94a3b8 !important;
+        }
+        .sidebar > ul > li > a:hover,
+        .sidebar > ul > li > button:hover {
+            background-color: rgba(51, 65, 85, 0.4) !important;
+            border-radius: 0.375rem !important;
+        }
+        .sidebar > ul > li > a:hover span,
+        .sidebar > ul > li > button:hover span {
+            color: #f1f5f9 !important;
+        }
+        .sidebar .sub-menu a:hover {
+            background-color: rgba(51, 65, 85, 0.4) !important;
+            border-radius: 0.375rem !important;
+        }
+        .sidebar .sub-menu a:hover,
+        .sidebar .sub-menu a:hover span {
+            color: #f1f5f9 !important;
+        }
+        .sidebar > ul > li > a:hover svg,
+        .sidebar > ul > li > button:hover svg {
+            color: #14b8a6 !important;
+        }
+        .sidebar > ul > li > a.active,
+        .sidebar > ul > li > button.active {
+            background-color: rgba(20, 184, 166, 0.1) !important;
+            border-radius: 0.375rem !important;
+        }
+        .sidebar > ul > li > a.active span,
+        .sidebar > ul > li > button.active span {
+            color: #14b8a6 !important;
+        }
+        .sidebar h2 {
+            color: #e2e8f0 !important;
+            background-color: rgba(30, 41, 59, 0.8) !important;
+        }
+        .sidebar .sub-menu svg {
+            color: #64748b;
+        }
+        .sidebar .sidebar-section-heading {
+            color: #64748b !important;
+            font-size: 0.65rem !important;
+            letter-spacing: 0.1em !important;
+        }
+
+        /* === Scrollbar === */
+        .sidebar .perfect-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155 !important;
+        }
+
+        /* === Header accent === */
+        header .shadow-sm {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+        }
+
+        /* === Sidebar Width reduction from 260px to 220px overrides === */
+        .sidebar {
+            width: 220px !important;
+        }
+        @media (min-width: 1024px) {
+            .main-container .main-content:where([dir=ltr],[dir=ltr] *) {
+                margin-left: 220px !important;
+            }
+            .main-container .main-content:where([dir=rtl],[dir=rtl] *) {
+                margin-right: 220px !important;
+            }
+            .vertical.toggle-sidebar .sidebar:where([dir=ltr],[dir=ltr] *) {
+                left: -220px !important;
+            }
+            .vertical.toggle-sidebar .sidebar:where([dir=rtl],[dir=rtl] *) {
+                right: -220px !important;
+            }
+            .vertical.toggle-sidebar .main-container .main-content:where([dir=ltr],[dir=ltr] *) {
+                margin-left: 0 !important;
+            }
+            .vertical.toggle-sidebar .main-container .main-content:where([dir=rtl],[dir=rtl] *) {
+                margin-right: 0 !important;
+            }
+        }
+        
+        /* Mobile / Tablet sidebar hidden state */
+        @media (max-width: 1023px) {
+            .sidebar:where([dir=ltr],[dir=ltr] *) {
+                left: -220px !important;
+            }
+            .sidebar:where([dir=rtl],[dir=rtl] *) {
+                right: -220px !important;
+            }
+            .toggle-sidebar .sidebar:where([dir=ltr],[dir=ltr] *) {
+                left: 0 !important;
+            }
+            .toggle-sidebar .sidebar:where([dir=rtl],[dir=rtl] *) {
+                right: 0 !important;
+            }
+        }
+
+        /* Collapsible vertical sidebar hover / active states on desktop */
+        .collapsible-vertical .sidebar:hover {
+            width: 220px !important;
+        }
+        .collapsible-vertical.toggle-sidebar .sidebar {
+            width: 220px !important;
+        }
+        @media (min-width: 1024px) {
+            .collapsible-vertical.toggle-sidebar .main-content {
+                width: calc(100% - 220px) !important;
+            }
+            .collapsible-vertical.toggle-sidebar .main-content:where([dir=ltr],[dir=ltr] *) {
+                margin-left: 220px !important;
+            }
+            .collapsible-vertical.toggle-sidebar .main-content:where([dir=rtl],[dir=rtl] *) {
+                margin-right: 220px !important;
+            }
+        }
+
     </style>
 </head>
 
-<body x-data="main" class="relative overflow-x-hidden font-nunito text-sm font-normal antialiased"
+<body x-data="main" class="relative overflow-x-hidden font-inter text-sm font-normal antialiased"
     :class="[ $store.app.sidebar ? 'toggle-sidebar' : '', $store.app.theme === 'dark' || $store.app.isDarkMode ?  'dark' : '', $store.app.menu, $store.app.layout,$store.app.rtlClass]">
 
     @include('admin.layouts.partials.loader')

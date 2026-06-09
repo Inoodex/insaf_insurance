@@ -1,16 +1,16 @@
 <!-- start sidebar section -->
 <div :class="{'dark text-white-dark' : $store.app.semidark}">
     <nav x-data="sidebar"
-        class="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[260px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
-        <div class="h-full bg-white dark:bg-[#0e1726]">
-            <div class="flex items-center justify-between px-4 py-3">
-                <a href="{{ route('tyro-dashboard.index') }}" class="main-logo flex shrink-0 items-center">
-                    <img class="ml-[5px] w-8 flex-none"
-                        src="{{ get_setting('app_logo') ? asset('storage/' . get_setting('app_logo')) : asset('assets/images/logo.svg') }}"
-                        alt="logo" />
-                    <span
-                        class="align-middle text-2xl font-semibold ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light lg:inline">{{ get_setting('app_name', config('app.name')) }}</span>
-                </a>
+        class="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[220px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
+        <div class="h-full bg-slate-900 dark:bg-[#0e1726]">
+                <div class="flex items-center justify-between px-4 py-3 bg-slate-800/60">
+                    <a href="{{ route('tyro-dashboard.index') }}" class="main-logo flex shrink-0 items-center">
+                        <img class="ml-[5px] w-8 flex-none"
+                            src="{{ get_setting('app_logo') ? asset('storage/' . get_setting('app_logo')) : asset('assets/images/logo.svg') }}"
+                            alt="logo" />
+                        <span
+                            class="align-middle text-2xl font-semibold ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light lg:inline text-slate-200">{{ get_setting('app_name', config('app.name')) }}</span>
+                    </a>
                 <!-- <a href="javascript:;"
                     class="collapse-icon flex h-8 w-8 items-center rounded-full transition duration-300 hover:bg-gray-500/10 rtl:rotate-180 dark:text-white-light dark:hover:bg-dark-light/10"
                     @click="$store.app.toggleSidebar()">

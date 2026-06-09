@@ -17,7 +17,7 @@
     <style>
         /* Component-level tweaks for Tyro within VRISTO */
         .tyro-content {
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         /* Ensure Tyro components inherit VRISTO's base font */
@@ -28,7 +28,7 @@
         .tyro-content .form-label,
         .tyro-content .form-input,
         .tyro-content .page-title {
-            font-family: 'Nunito', sans-serif !important;
+            font-family: 'Inter', sans-serif !important;
         }
 
         /* Sync Tyro cards with VRISTO dashboard panel style */
