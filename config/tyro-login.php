@@ -118,7 +118,7 @@ return [
     */
     'redirects' => [
         'after_login' => env('TYRO_LOGIN_REDIRECT_AFTER_LOGIN', '/dashboard'),
-        'after_logout' => env('TYRO_LOGIN_REDIRECT_AFTER_LOGOUT', '/admin'),
+        'after_logout' => env('TYRO_LOGIN_REDIRECT_AFTER_LOGOUT', '/admin/login'),
         'after_register' => env('TYRO_LOGIN_REDIRECT_AFTER_REGISTER', '/'),
         'after_email_verification' => env('TYRO_LOGIN_REDIRECT_AFTER_EMAIL_VERIFICATION', '/login'),
     ],

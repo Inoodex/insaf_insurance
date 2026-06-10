@@ -68,6 +68,7 @@ class InsuranceApplicationController extends Controller
         $validated['status'] = 'draft';
         $validated['territories'] = $plan->territories;
         $validated['policy_number'] = 'ISIE-' . strtoupper(Str::random(6));
+        $validated['gic_reference'] = now()->format('mY');
 
         $application = InsuranceApplication::create($validated);
 
@@ -134,6 +135,11 @@ class InsuranceApplicationController extends Controller
             $validated['policy_number'] = 'ISIE-' . strtoupper(Str::random(6));
         }
 
+        // Auto-generate gic_reference if missing
+        if (!$application->gic_reference) {
+            $validated['gic_reference'] = now()->format('mY');
+        }
+
         $application->update($validated);
 
         // On draft -> sent transition, send the policy-issued email (dedup-guarded + queued)
@@ -152,6 +158,7 @@ class InsuranceApplicationController extends Controller
         }
 
         $application->policy_number = $application->policy_number ?? 'ISIE-' . strtoupper(Str::random(6));
+        $application->gic_reference = $application->gic_reference ?? now()->format('mY');
         $application->status = 'sent';
         $application->save();
 

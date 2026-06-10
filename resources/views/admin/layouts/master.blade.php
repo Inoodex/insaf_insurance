@@ -20,77 +20,77 @@
         [x-cloak] { display: none !important; }
         .font-inter { font-family: 'Inter', sans-serif; }
 
-        /* === Primary color: Blue → Teal === */
+        /* === Primary color: #4A3B75 === */
         .text-primary, .hover\:text-primary:hover,
         .group:hover .group-hover\:text-primary,
         :is(.dark) .dark\:text-primary,
         :is(.dark) .dark\:hover\:text-primary:hover {
-            color: #14b8a6 !important;
+            color: #4A3B75 !important;
         }
         .bg-primary, .hover\:bg-primary:hover,
         :is(.dark) .dark\:bg-primary,
         :is(.dark) .dark\:hover\:bg-primary:hover,
         .peer:checked ~ .peer-checked\:bg-primary,
         .before\:bg-primary::before {
-            background-color: #14b8a6 !important;
+            background-color: #4A3B75 !important;
         }
         .border-primary, .hover\:border-primary:hover,
         :is(.dark) .dark\:border-primary {
-            border-color: #14b8a6 !important;
+            border-color: #4A3B75 !important;
         }
-        .ring-primary { --tw-ring-color: #14b8a6 !important; }
-        .text-primary\/10 { color: rgba(20, 184, 166, 0.1) !important; }
+        .ring-primary { --tw-ring-color: #4A3B75 !important; }
+        .text-primary\/10 { color: rgba(74, 59, 117, 0.1) !important; }
 
-        /* === Sidebar: dark in light mode === */
+        /* === Sidebar: light bg #F0EAFA === */
         .sidebar > ul > li > a,
         .sidebar > ul > li > button,
         .sidebar > ul > li > a span,
         .sidebar > ul > li > button span {
-            color: #f1f5f9 !important;
+            color: #4A3B75 !important;
         }
         .sidebar .sub-menu a,
         .sidebar .sub-menu a span {
-            color: #94a3b8 !important;
+            color: #6b5ca9 !important;
         }
         .sidebar > ul > li > a:hover,
         .sidebar > ul > li > button:hover {
-            background-color: rgba(51, 65, 85, 0.4) !important;
+            background-color: rgba(74, 59, 117, 0.08) !important;
             border-radius: 0.375rem !important;
         }
         .sidebar > ul > li > a:hover span,
         .sidebar > ul > li > button:hover span {
-            color: #f1f5f9 !important;
+            color: #4A3B75 !important;
         }
         .sidebar .sub-menu a:hover {
-            background-color: rgba(51, 65, 85, 0.4) !important;
+            background-color: rgba(74, 59, 117, 0.08) !important;
             border-radius: 0.375rem !important;
         }
         .sidebar .sub-menu a:hover,
         .sidebar .sub-menu a:hover span {
-            color: #f1f5f9 !important;
+            color: #4A3B75 !important;
         }
         .sidebar > ul > li > a:hover svg,
         .sidebar > ul > li > button:hover svg {
-            color: #14b8a6 !important;
+            color: #4A3B75 !important;
         }
         .sidebar > ul > li > a.active,
         .sidebar > ul > li > button.active {
-            background-color: rgba(20, 184, 166, 0.1) !important;
+            background-color: rgba(74, 59, 117, 0.12) !important;
             border-radius: 0.375rem !important;
         }
         .sidebar > ul > li > a.active span,
         .sidebar > ul > li > button.active span {
-            color: #14b8a6 !important;
+            color: #4A3B75 !important;
         }
         .sidebar h2 {
-            color: #e2e8f0 !important;
-            background-color: rgba(30, 41, 59, 0.8) !important;
+            color: #4A3B75 !important;
+            background-color: rgba(184, 176, 196, 0.9) !important;
         }
         .sidebar .sub-menu svg {
-            color: #64748b;
+            color: #6b5ca9;
         }
         .sidebar .sidebar-section-heading {
-            color: #64748b !important;
+            color: #6b5ca9 !important;
             font-size: 0.65rem !important;
             letter-spacing: 0.1em !important;
         }

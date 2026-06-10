@@ -192,7 +192,7 @@
                         Profile Settings
                     </a>
 
-                    <form action="{{ route('student.logout') }}" method="POST">
+                    <form action="{{ url('student/logout') }}" method="POST">
                         @csrf
                         <button type="submit"
                             class="w-full flex items-center gap-3 px-4 py-2 text-xs font-bold text-red-400 hover:bg-red-50 transition-colors">

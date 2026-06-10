@@ -2,12 +2,12 @@
 <div :class="{'dark text-white-dark' : $store.app.semidark}">
     <nav x-data="sidebar"
         class="sidebar fixed bottom-0 top-0 z-50 h-full min-h-screen w-[220px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-all duration-300">
-        <div class="h-full bg-slate-900 dark:bg-[#0e1726]">
+        <div class="h-full" style="background-color: #F0EAFA;">
                 <div class="flex items-center justify-between px-4 py-3 bg-slate-800/60">
                     <a href="{{ route('tyro-dashboard.index') }}" class="main-logo flex shrink-0 items-center">
-                        <img class="ml-[5px] w-8 flex-none"
+                        {{-- <img class="ml-[5px] w-8 flex-none"
                             src="{{ get_setting('app_logo') ? asset('storage/' . get_setting('app_logo')) : asset('assets/images/logo.svg') }}"
-                            alt="logo" />
+                            alt="logo" /> --}}
                         <span
                             class="align-middle text-2xl font-semibold ltr:ml-1.5 rtl:mr-1.5 dark:text-white-light lg:inline text-slate-200">{{ get_setting('app_name', config('app.name')) }}</span>
                     </a>
@@ -52,7 +52,8 @@
                 @if(auth()->user()->hasRole('admin'))
                     <!-- Administration -->
                     <h2
-                        class="-mx-4 mb-1 flex items-center bg-white-light/30 px-7 py-3 font-extrabold uppercase dark:bg-dark dark:bg-opacity-[0.08]">
+                        class="-mx-4 mb-1 flex items-center px-7 py-3 font-extrabold uppercase"
+                        style="background-color: rgba(240, 234, 250, 0.8);">
                         <svg class="hidden h-5 w-4 flex-none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
                             fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="5" y1="12" x2="19" y2="12"></line>

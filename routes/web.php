@@ -41,7 +41,7 @@ use App\Http\Controllers\Student\ClaimController as StudentClaimController;
 
     Route::get('login', [StudentLoginController::class, 'showLoginForm'])->name('student.login');
     Route::post('login', [StudentLoginController::class, 'login']);
-    Route::post('logout', [StudentLoginController::class, 'logout'])->name('student.logout');
+    Route::post('student/logout', [StudentLoginController::class, 'logout'])->name('student.logout');
 
     Route::get('forgot-password', [\App\Http\Controllers\Student\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('student.password.request');
     Route::post('forgot-password', [\App\Http\Controllers\Student\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('student.password.email');
