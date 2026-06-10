@@ -188,7 +188,7 @@
 
 <body>
     <div class="header clearfix">
-        <div class="logo">Inoodex</div>
+        <div class="logo">SWISSCARE</div>
         <div class="e-doc-info">e-document issued: {{ now()->format('d.m.Y H:i') }}</div>
     </div>
 
@@ -369,7 +369,7 @@
     <div class="page-break"></div>
 
     <div class="header clearfix">
-        <div class="logo">Inoodex</div>
+        <div class="logo">SWISSCARE</div>
         <div class="e-doc-info">e-documento emitido: {{ now()->format('d.m.Y H:i') }}</div>
     </div>
 
