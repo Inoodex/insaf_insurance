@@ -69,6 +69,11 @@
                     @error('institute_name') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">
+                    <label for="institute_phone">Institute Phone Number <span class="text-danger">*</span></label>
+                    <input type="text" name="institute_phone" id="institute_phone" class="form-input" value="{{ old('institute_phone') }}" />
+                    @error('institute_phone') <span class="text-danger text-sm">{{ $message }}</span> @enderror
+                </div>
+                <div class="form-group">
                     <label for="institute_address">Institute Address <span class="text-danger">*</span></label>
                     <textarea name="institute_address" id="institute_address" class="form-textarea" required rows="2">{{ old('institute_address') }}</textarea>
                     @error('institute_address') <span class="text-danger text-sm">{{ $message }}</span> @enderror

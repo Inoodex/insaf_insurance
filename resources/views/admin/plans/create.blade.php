@@ -38,43 +38,43 @@
 
                 <div class="form-group">
                     <label for="medical_cover_max">Medical Cover Max <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="medical_cover_max" id="medical_cover_max" class="form-input" required value="{{ old('medical_cover_max', 0) }}" />
+                    <input type="number" step="0.01" name="medical_cover_max" id="medical_cover_max" class="form-input" required value="{{ old('medical_cover_max', 50000) }}" />
                 </div>
                 <div class="form-group">
                     <label for="emergency_evacuation_max">Emergency Evacuation Max <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="emergency_evacuation_max" id="emergency_evacuation_max" class="form-input" required value="{{ old('emergency_evacuation_max', 0) }}" />
+                    <input type="number" step="0.01" name="emergency_evacuation_max" id="emergency_evacuation_max" class="form-input" required value="{{ old('emergency_evacuation_max', 150000) }}" />
                 </div>
                 <div class="form-group">
                     <label for="medical_repatriation_max">Medical Repatriation Max <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="medical_repatriation_max" id="medical_repatriation_max" class="form-input" required value="{{ old('medical_repatriation_max', 0) }}" />
+                    <input type="number" step="0.01" name="medical_repatriation_max" id="medical_repatriation_max" class="form-input" required value="{{ old('medical_repatriation_max', 50000) }}" />
                 </div>
                 <div class="form-group">
                     <label for="sea_mountain_rescue_max">Sea/Mountain Rescue Max <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="sea_mountain_rescue_max" id="sea_mountain_rescue_max" class="form-input" required value="{{ old('sea_mountain_rescue_max', 0) }}" />
+                    <input type="number" step="0.01" name="sea_mountain_rescue_max" id="sea_mountain_rescue_max" class="form-input" required value="{{ old('sea_mountain_rescue_max', 30000) }}" />
                 </div>
                 <div class="form-group">
                     <label for="repatriation_mortal_remains_max">Repatriation Mortal Remains <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="repatriation_mortal_remains_max" id="repatriation_mortal_remains_max" class="form-input" required value="{{ old('repatriation_mortal_remains_max', 0) }}" />
+                    <input type="number" step="0.01" name="repatriation_mortal_remains_max" id="repatriation_mortal_remains_max" class="form-input" required value="{{ old('repatriation_mortal_remains_max', 30000) }}" />
                 </div>
                 <div class="form-group">
                     <label for="luggage_max">Luggage Max <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="luggage_max" id="luggage_max" class="form-input" required value="{{ old('luggage_max', 0) }}" />
+                    <input type="number" step="0.01" name="luggage_max" id="luggage_max" class="form-input" required value="{{ old('luggage_max', 1000) }}" />
                 </div>
                 <div class="form-group">
                     <label for="luggage_deductible">Luggage Deductible <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="luggage_deductible" id="luggage_deductible" class="form-input" required value="{{ old('luggage_deductible', 0) }}" />
+                    <input type="number" step="0.01" name="luggage_deductible" id="luggage_deductible" class="form-input" required value="{{ old('luggage_deductible', 250) }}" />
                 </div>
                 <div class="form-group">
                     <label for="accidental_death_max">Accidental Death Max <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="accidental_death_max" id="accidental_death_max" class="form-input" required value="{{ old('accidental_death_max', 0) }}" />
+                    <input type="number" step="0.01" name="accidental_death_max" id="accidental_death_max" class="form-input" required value="{{ old('accidental_death_max', 25000) }}" />
                 </div>
                 <div class="form-group">
                     <label for="accidental_disability_max">Accidental Disability Max <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="accidental_disability_max" id="accidental_disability_max" class="form-input" required value="{{ old('accidental_disability_max', 0) }}" />
+                    <input type="number" step="0.01" name="accidental_disability_max" id="accidental_disability_max" class="form-input" required value="{{ old('accidental_disability_max', 50000) }}" />
                 </div>
                 <div class="form-group">
                     <label for="third_party_liability_max">Third Party Liability Max <span class="text-danger">*</span></label>
-                    <input type="number" step="0.01" name="third_party_liability_max" id="third_party_liability_max" class="form-input" required value="{{ old('third_party_liability_max', 0) }}" />
+                    <input type="number" step="0.01" name="third_party_liability_max" id="third_party_liability_max" class="form-input" required value="{{ old('third_party_liability_max', 500000) }}" />
                 </div>
 
                 <div class="md:col-span-2 mt-4">

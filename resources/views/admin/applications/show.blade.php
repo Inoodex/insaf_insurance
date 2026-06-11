@@ -50,23 +50,23 @@
             <div class="space-y-3">
                 <div>
                     <span class="text-white-dark block">Full Name</span>
-                    <span class="font-semibold">{{ $application->student->full_name }}</span>
+                    <span class="font-semibold">{{ optional($application->student)->full_name }}</span>
                 </div>
                 <div>
                     <span class="text-white-dark block">Email</span>
-                    <span>{{ $application->student->email }}</span>
+                    <span>{{ optional($application->student)->email }}</span>
                 </div>
                 <div>
                     <span class="text-white-dark block">Passport</span>
-                    <span>{{ $application->student->passport_number }}</span>
+                    <span>{{ optional($application->student)->passport_number }}</span>
                 </div>
                 <div>
                     <span class="text-white-dark block">Nationality</span>
-                    <span>{{ $application->student->nationality }}</span>
+                    <span>{{ optional($application->student)->nationality }}</span>
                 </div>
                 <div>
                     <span class="text-white-dark block">Institute</span>
-                    <span class="text-sm">{{ $application->student->institute_name }}</span>
+                    <span class="text-sm">{{ optional($application->student)->institute_name }}</span>
                 </div>
             </div>
         </div>

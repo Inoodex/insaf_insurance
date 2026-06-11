@@ -29,6 +29,7 @@ class Student extends Authenticatable
         'phone_number',
         'institute_name',
         'institute_address',
+        'institute_phone',
         'address_2',
         'zip_code',
         'city',

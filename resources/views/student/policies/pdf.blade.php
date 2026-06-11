@@ -5,9 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
         body {
-            font-family: sans-serif;
-            font-size: 10px;
-            color: #333;
+            font-family: DejaVu Sans, Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            color: #000;
             margin: 0;
             padding: 0;
         }
@@ -18,9 +18,9 @@
         }
 
         .logo {
-            font-size: 24px;
-            font-bold: true;
-            color: #4A3B75;
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
         }
 
         .e-doc-info {
@@ -28,14 +28,14 @@
             top: 0;
             right: 0;
             text-align: right;
-            color: #999;
+            color: black;
             font-size: 8px;
         }
 
         .section-header {
             font-weight: bold;
-            margin-bottom: 5px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 1px;
+            /* border-bottom: 1px solid #eee; */
             padding-bottom: 2px;
         }
 
@@ -65,21 +65,21 @@
         }
 
         .policy-title {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: bold;
             color: #000;
-            margin-top: 20px;
+            margin-top: 5px;
         }
 
         .policy-number {
-            color: #666;
-            margin-bottom: 15px;
+            color: #000;
+            margin-bottom: 10px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         th {
@@ -163,21 +163,27 @@
         }
 
         .signature-section {
-            margin-top: 30px;
+            margin-top: 10px;
             text-align: center;
         }
 
         .signature-img {
-            width: 250px;
+            width: 350px;
             height: auto;
         }
 
-        .legal-notice {
+        .page-content {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .legal-notice, .legal-notice2 {
             font-size: 7px;
-            color: #999;
-            margin-top: 50px;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
+            color: #000;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
         }
 
         .page-break {
@@ -187,34 +193,35 @@
 </head>
 
 <body>
+    <div class="page-content">
     <div class="header clearfix">
-        <div class="logo">SWISSCARE</div>
+        <div class="logo"><img src="{{ public_path('assets/images/swisscare_logo.png') }}" alt="Insaf Insurance" style="max-height: 40px;"></div>
         <div class="e-doc-info">e-document issued: {{ now()->format('d.m.Y H:i') }}</div>
     </div>
 
     <div class="row clearfix">
         <div class="col">
             <div class="section-header">Policyholder</div>
-            <strong>{{ strtoupper($application->student->full_name) }}</strong><br>
-            {{ $application->student->institute_address }}<br>
-            PLA 1501 Tarxien<br>
-            (Malta)
+            {{ strtoupper($application->student->full_name) }}<br>
+            {{ $application->student->institute_name}}, {{ $application->student->institute_address }}<br>
+            <br>
+           @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
         <div class="col">
             <div class="section-header">Correspondence address</div>
-            <strong>{{ strtoupper($application->student->full_name) }}</strong><br>
-            {{ $application->student->institute_address }}<br>
-            PLA 1501 Tarxien<br>
-            (Malta)
+            {{ strtoupper($application->student->full_name) }}<br>
+            {{ $application->student->institute_name}}, {{ $application->student->institute_address }}<br>
+            <br>
+           @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
         <div class="col">
             {{-- <div class="section-header">Contact</div> --}}
-            Email: {{ $application->student->email }}<br>
-            Phone number: {{ $application->student->phone_number ?? '+35677775386' }}
+           <strong>Email</strong>  {{ $application->student->email }}<br>
+            <strong>Phone number</strong> {{ $application->student->institute_phone ?? '+35677775386' }}
         </div>
     </div>
 
-    <div class="row" style="margin-top: 20px;">
+    <div class="row" style="margin-top: 10px;">
         <div class="section-header">Insured person</div>
         {{ strtoupper($application->student->full_name) }} | {{ ucfirst($application->student->gender) }} |
         {{ $application->student->date_of_birth->format('d.m.Y') }} | {{ $application->student->passport_number }} |
@@ -238,13 +245,13 @@
         <!-- Plan level -->
         <tr class="shade">
             <th width="27%">Plan level</th>
-            <td width="43%"></td>
+            <td width="43%">{{ $application->plan->plan_level }}</td>
             <td width="30%"></td>
         </tr>
         <!-- First destination -->
         <tr class="white">
             <th>First destination</th>
-            <td colspan="2">Malta</td>
+            <td colspan="2">{{ $application->first_destination }}</td>
         </tr>
         <!-- Territories -->
         <tr class="shade">
@@ -272,20 +279,16 @@
         </tr>
         <!-- Sea and mountain search and rescue -->
         <tr class="white">
-            <th>Sea and mountain search and rescue</th>
+            <th>Sea and mountain search and <br>
+                rescue</th>
             <td class="amount">Max. {{ $amt('sea_mountain_rescue') }}</td>
             <td></td>
         </tr>
-        <!-- Emergency medical evacuation -->
+        <!-- Emergency medical evacuation & Medical repatriation -->
         <tr class="shade">
-            <th>Emergency medical evacuation</th>
-            <td class="amount">Max. {{ $amt('emergency_evacuation') }}</td>
-            <td rowspan="2" class="shade-cell">By air, land or sea</td>
-        </tr>
-        <!-- Medical repatriation -->
-        <tr class="shade">
-            <th>Medical repatriation</th>
-            <td class="amount">Max. {{ $amt('medical_repatriation') }}</td>
+            <th>Emergency medical evacuation<br>Medical repatriation</th>
+            <td class="amount">Max. {{ $amt('emergency_evacuation') }}<br>Max. {{ $amt('medical_repatriation') }}</td>
+            <td class="shade-cell">By air, land or sea</td>
         </tr>
         <!-- Repatriation of mortal remains -->
         <tr class="white">
@@ -298,7 +301,8 @@
             <th>Luggage</th>
             <td class="amount">Max. {{ $amt('luggage') }}</td>
             <td class="detail">
-                Loss, damage, robbery or theft of luggage<br><br>
+                Loss, damage, robbery or theft of 
+                <br>  luggage<br><br>
                 (Deductible of € 250.00 per claim)
             </td>
         </tr>
@@ -351,7 +355,7 @@
     </div>
 
     <div class="signature-section clearfix">
-        <div style="float: left; width: 100%; text-align: center;">
+        <div style="float: left; height: auto; width: 100%; text-align: center;">
             <img src="{{ public_path('assets/images/screenshot.png') }}" class="signature-img"><br>
             {{-- <span style="font-size: 8px; font-weight: bold; color: #0056b3;">ANKER</span><br>
             <span style="font-size: 7px; color: #0056b3;">INSURANCE</span> --}}
@@ -366,36 +370,38 @@
         registered with the Autoriteit Financiële Markten (AFM) (the Dutch Authority for the Financial Markets) under
         number 12000661 and is authorised by De Nederlandsche Bank ("DNB").
     </div>
+    </div>
     <div class="page-break"></div>
 
+    <div class="page-content">
     <div class="header clearfix">
-        <div class="logo">SWISSCARE</div>
+        <div class="logo"><img src="{{ public_path('assets/images/swisscare_logo.png') }}" alt="Insaf Insurance" style="max-height: 40px;"></div>
         <div class="e-doc-info">e-documento emitido: {{ now()->format('d.m.Y H:i') }}</div>
     </div>
 
     <div class="row clearfix">
         <div class="col">
             <div class="section-header">Tenedor de poliza</div>
-            <strong>{{ strtoupper($application->student->full_name) }}</strong><br>
-            {{ $application->student->institute_address }}<br>
-            PLA 1501 Tarxien<br>
-            (Malta)
+            {{ strtoupper($application->student->full_name) }}<br>
+            {{ $application->student->institute_name}}, {{ $application->student->institute_address }}<br>
+            <br>
+           @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
         <div class="col">
             <div class="section-header">Dirección de correspondencia</div>
-            <strong>{{ strtoupper($application->student->full_name) }}</strong><br>
-            {{ $application->student->institute_address }}<br>
-            PLA 1501 Tarxien<br>
-            (Malta)
+            {{ strtoupper($application->student->full_name) }}<br>
+            {{ $application->student->institute_name}}, {{ $application->student->institute_address }}<br>
+            <br>
+           @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
         <div class="col">
             {{-- <div class="section-header">Contacto</div> --}}
-            Email: {{ $application->student->email }}<br>
-            Teléfono: {{ $application->student->phone_number ?? '+35677775386' }}
+             <strong>Email</strong>  {{ $application->student->email }}<br>
+            <strong>Teléfono</strong> {{ $application->student->institute_phone ?? '+35677775386' }}
         </div>
     </div>
 
-    <div class="row" style="margin-top: 20px;">
+    <div class="row" style="margin-top: 10px;">
         <div class="section-header">Asegurado</div>
         {{ strtoupper($application->student->full_name) }} | {{ ucfirst($application->student->gender) }} |
         {{ $application->student->date_of_birth->format('d.m.Y') }} | {{ $application->student->passport_number }} |
@@ -410,12 +416,12 @@
     <table class="benefit-table">
         <tr class="shade">
             <th width="27%">Nombre del plan</th>
-            <td width="43%">Standard</td>
+            <td width="43%">{{ $application->plan->plan_level }}</td>
             <td width="30%"></td>
         </tr>
         <tr class="white">
             <th>Primer destino</th>
-            <td colspan="2">Malta</td>
+            <td colspan="2">{{ $application->first_destination }}</td>
         </tr>
         <tr class="shade">
             <th>Territorialidad</th>
@@ -433,7 +439,8 @@
             <td class="detail">
                 Tratamiento médico de emergencia<br>
                 Enfermedad y accidente<br>
-                Tratamientos hospitalarios y ambulatorios<br>
+                Tratamientos hospitalarios y 
+                <br> ambulatorios<br>
                 Médicos de cabecera y especialistas<br>
                 Medicamentos prescritos
             </td>
@@ -444,16 +451,14 @@
             <td></td>
         </tr>
         <tr class="shade">
-            <th>Evacuación Médica de emergencia</th>
-            <td class="amount">Máx. {{ $amt('emergency_evacuation') }}</td>
-            <td rowspan="2" class="shade-cell">En aire - mar - tierra</td>
-        </tr>
-        <tr class="shade">
-            <th>Repatriación sanitaria</th>
-            <td class="amount">Máx. {{ $amt('medical_repatriation') }}</td>
+            <th>Evacuación Médica de 
+                <br>emergencia<br>Repatriación sanitaria</th>
+            <td class="amount">Máx. {{ $amt('emergency_evacuation') }}<br><br>Máx. {{ $amt('medical_repatriation') }}</td>
+            <td class="shade-cell">En aire - mar - tierra</td>
         </tr>
         <tr class="white">
-            <th>Repatriación de restos mortales</th>
+            <th>Repatriación de restos 
+                <br> mortales</th>
             <td class="amount">Máx. {{ $amt('repatriation_mortal_remains') }}</td>
             <td></td>
         </tr>
@@ -461,7 +466,9 @@
             <th>Equipaje de viaje</th>
             <td class="amount">Máx. {{ $amt('luggage') }}</td>
             <td class="detail">
-                Pérdida, daño, robo o hurto de equipaje<br><br>
+                Pérdida, daño, robo o hurto de 
+                <br>
+                equipaje<br><br>
                 (Franquicia de € 250.00 por siniestro)
             </td>
         </tr>
@@ -511,7 +518,7 @@
     </div>
 
     <div class="signature-section clearfix">
-        <div style="float: left; width: 100%; text-align: center;">
+        <div style="float: left; height: auto; width: 100%; text-align: center;">
             <img src="{{ public_path('assets/images/screenshot.png') }}" class="signature-img"><br>
             {{-- <span style="font-size: 8px; font-weight: bold; color: #0056b3;">ANKER</span><br>
             <span style="font-size: 7px; color: #0056b3;">INSURANCE</span> --}}
@@ -521,10 +528,11 @@
         </div> --}}
     </div>
 
-    <div class="legal-notice">
+    <div class="legal-notice2">
         Aviso legal: La aseguradora es Anker Insurance Company n.v. con domicilio en Paterswoldseweg 812,
         9728 BM Groningen. Anker está registrada ante la Autoriteit Financiële Markten (AFM), la autoridad
         holandesa de los mercados financieros, con el número 12000661 y está autorizada por De Nederlandsche Bank ("DNB").
+    </div>
     </div>
 </body>
 

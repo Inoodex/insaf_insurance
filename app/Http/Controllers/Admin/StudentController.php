@@ -49,6 +49,7 @@ class StudentController extends Controller
             'phone_number' => 'nullable|string|max:255',
             'institute_name' => 'required|string|max:255',
             'institute_address' => 'required|string',
+            'institute_phone' => 'required|string|max:255',
         ]);
 
         $temporaryPassword = Str::random(10);
@@ -109,6 +110,7 @@ class StudentController extends Controller
             'phone_number' => 'nullable|string|max:255',
             'institute_name' => 'required|string|max:255',
             'institute_address' => 'required|string',
+            'institute_phone' => 'required|string|max:255',
         ]);
 
         $student->update($validated);

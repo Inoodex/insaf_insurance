@@ -63,7 +63,7 @@
                                 </td>
                                 {{-- <td>{{ $student->nationality }}</td> --}}
                                 <td>
-                                    <div class="text-sm">{{ Str::limit($student->institute_name, 20) }}</div>
+                                    <div class="text-sm">{{ Str::limit($student->institute_name, 35) }}</div>
                                 </td>
                                 <td>
                                     @if ($student->password_changed)
@@ -74,14 +74,14 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="flex items-center justify-center gap-2">
-                                        <form action="{{ route('admin.students.send-credentials', $student->id) }}"
+                                        {{-- <form action="{{ route('admin.students.send-credentials', $student->id) }}"
                                             method="POST" class="inline">
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-outline-info"
                                                 title="Resend Credentials">
                                                 Email Credentials
                                             </button>
-                                        </form>
+                                        </form> --}}
                                         <a href="{{ route('admin.students.show', $student->id) }}"
                                             class="btn btn-sm btn-outline-success">View</a>
                                         <a href="{{ route('admin.students.edit', $student->id) }}"

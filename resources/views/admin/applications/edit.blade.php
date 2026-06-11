@@ -60,7 +60,7 @@
             <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div class="form-group">
                     <label>Student</label>
-                    <input type="text" class="form-input bg-gray-100 cursor-not-allowed" value="{{ $application->student->full_name }}" readonly />
+                    <input type="text" class="form-input bg-gray-100 cursor-not-allowed" value="{{ optional($application->student)->full_name }}" readonly />
                 </div>
 
                 <div class="form-group">
@@ -80,9 +80,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="policy_number">Policy Number</label>
-                    <input type="text" name="policy_number" id="policy_number" class="form-input {{ $application->policy_number ? 'bg-gray-100 cursor-not-allowed' : '' }}" 
-                        value="{{ old('policy_number', $application->policy_number) }}" {{ $application->policy_number ? 'readonly' : '' }} placeholder="Auto-generated if status is 'Sent'" />
+                    <label for="policy_number">Policy Number <span class="text-danger">*</span></label>
+                    <input type="text" name="policy_number" id="policy_number" class="form-input" required value="{{ old('policy_number', $application->policy_number) }}" />
+                    @error('policy_number') <span class="text-danger text-sm">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="gic_reference">GIC Reference <span class="text-danger">*</span></label>
+                    <input type="text" name="gic_reference" id="gic_reference" class="form-input" required value="{{ old('gic_reference', $application->gic_reference) }}" />
+                    @error('gic_reference') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">

@@ -54,6 +54,8 @@ class InsuranceApplicationController extends Controller
             'premium_amount' => 'required|numeric|min:0',
             'currency' => 'required|string|size:3',
             'notes' => 'nullable|string',
+            'policy_number' => 'required|string|unique:insurance_applications,policy_number',
+            'gic_reference' => 'required|string|max:255',
         ]);
 
         $plan = InsurancePlan::find($request->plan_id);
@@ -67,8 +69,6 @@ class InsuranceApplicationController extends Controller
         $validated['duration_days'] = $duration;
         $validated['status'] = 'draft';
         $validated['territories'] = $plan->territories;
-        $validated['policy_number'] = 'ISIE-' . strtoupper(Str::random(6));
-        $validated['gic_reference'] = now()->format('mY');
 
         $application = InsuranceApplication::create($validated);
 
@@ -120,6 +120,8 @@ class InsuranceApplicationController extends Controller
             'premium_amount' => 'required|numeric|min:0',
             'status' => 'required|in:draft,sent,active,expired,cancelled',
             'notes' => 'nullable|string',
+            'policy_number' => 'required|string|unique:insurance_applications,policy_number,' . $application->id,
+            'gic_reference' => 'required|string|max:255',
         ]);
 
         $oldStatus = $application->status;
@@ -129,16 +131,6 @@ class InsuranceApplicationController extends Controller
         $end = new \DateTime($request->end_date);
         $duration = $start->diff($end)->days + 1;
         $validated['duration_days'] = $duration;
-
-        // If status changed to 'sent' and no policy number, generate one
-        if ($request->status === 'sent' && !$application->policy_number) {
-            $validated['policy_number'] = 'ISIE-' . strtoupper(Str::random(6));
-        }
-
-        // Auto-generate gic_reference if missing
-        if (!$application->gic_reference) {
-            $validated['gic_reference'] = now()->format('mY');
-        }
 
         $application->update($validated);
 
@@ -157,8 +149,6 @@ class InsuranceApplicationController extends Controller
                 ->with('error', 'Only draft applications can be issued.');
         }
 
-        $application->policy_number = $application->policy_number ?? 'ISIE-' . strtoupper(Str::random(6));
-        $application->gic_reference = $application->gic_reference ?? now()->format('mY');
         $application->status = 'sent';
         $application->save();
 

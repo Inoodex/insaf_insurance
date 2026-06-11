@@ -54,11 +54,11 @@ Your insurance application has been issued. Please find your policy details and 
 | Schengen Included | {{ $application->plan->schengen_included ? 'Yes' : 'No' }} |
 </x-mail::table> --}}
 
-You can log in to your student portal to view the full policy details, download documents, or update your information at any time.
+You can download your insurance policy document from the student portal. The PDF includes all the details of your coverage and important legal information.
 
-<x-mail::button :url="route('student.login')">
+{{-- <x-mail::button :url="route('student.login')">
 Open Student Portal
-</x-mail::button>
+</x-mail::button> --}}
 
 If you have any questions about your policy, please contact our support team.
 

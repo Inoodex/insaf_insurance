@@ -112,6 +112,18 @@
                     <input type="number" step="0.01" name="premium_amount" id="premium_amount" class="form-input" required value="{{ old('premium_amount') }}"/>
                 </div>
 
+                <div class="form-group">
+                    <label for="policy_number">Policy Number <span class="text-danger">*</span></label>
+                    <input type="text" name="policy_number" id="policy_number" class="form-input" required value="{{ old('policy_number') }}" />
+                    @error('policy_number') <span class="text-danger text-sm">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="gic_reference">GIC Reference <span class="text-danger">*</span></label>
+                    <input type="text" name="gic_reference" id="gic_reference" class="form-input" required value="{{ old('gic_reference') }}" />
+                    @error('gic_reference') <span class="text-danger text-sm">{{ $message }}</span> @enderror
+                </div>
+
                 <div class="form-group md:col-span-2">
                     <label for="notes">Internal Notes</label>
                     <textarea name="notes" id="notes" class="form-textarea" rows="3">{{ old('notes') }}</textarea>

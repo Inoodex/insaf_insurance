@@ -3,10 +3,12 @@
 namespace App\Mail;
 
 use App\Models\InsuranceApplication;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 
 class ApplicationIssuedMail extends Mailable
@@ -36,6 +38,13 @@ class ApplicationIssuedMail extends Mailable
 
     public function attachments(): array
     {
-        return [];
+        $application = $this->application;
+        $application->loadMissing(['student', 'plan', 'benefitCoverages']);
+
+        $pdf = Pdf::loadView('student.policies.pdf', compact('application'));
+
+        return [
+            Attachment::fromData(fn () => $pdf->output(), 'Policy-' . $application->policy_number . '.pdf'),
+        ];
     }
 }

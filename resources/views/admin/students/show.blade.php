@@ -69,7 +69,7 @@
                 </div>
 
                  <!-- Account Security Settings Panel -->
-                <div class="panel p-6 flex flex-col gap-4" style="border: 1px solid rgba(139, 92, 246, 0.15);">
+                {{-- <div class="panel p-6 flex flex-col gap-4" style="border: 1px solid rgba(139, 92, 246, 0.15);">
                     <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">Portal Access</h4>
 
                     @if(!$student->password_changed && $student->temporary_password)
@@ -86,7 +86,7 @@
                             Resend Access Email
                         </button>
                     </form>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Profile Info Grid -->
@@ -150,7 +150,7 @@
                 </div>
 
                 <!-- System Audit Panel -->
-                <div class="panel p-6 flex flex-col gap-6" style="border: 1px solid rgba(226, 232, 240, 0.8);">
+                {{-- <div class="panel p-6 flex flex-col gap-6" style="border: 1px solid rgba(226, 232, 240, 0.8);">
                     <div class="flex items-center gap-2 pb-3 border-b border-slate-100 dark:border-slate-800/80">
                         <span class="h-4 w-1 rounded-full bg-slate-500"></span>
                         <h4 class="font-bold uppercase tracking-wider text-slate-800 dark:text-white text-xs">System Records</h4>
@@ -170,7 +170,7 @@
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
