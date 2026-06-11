@@ -11,6 +11,7 @@ use App\Models\InsurancePlan;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -227,6 +228,15 @@ class InsuranceApplicationController extends Controller
         $application->save();
 
         return back()->with('success', 'Application marked as paid successfully.');
+    }
+
+    public function previewPdf(InsuranceApplication $application)
+    {
+        $application->load(['student', 'plan', 'benefitCoverages']);
+
+        $pdf = Pdf::loadView('student.policies.pdf', compact('application'));
+
+        return $pdf->stream('Policy-' . $application->policy_number . '.pdf');
     }
 
     public function destroy(InsuranceApplication $application)

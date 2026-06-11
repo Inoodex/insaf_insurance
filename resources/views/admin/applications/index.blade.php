@@ -120,6 +120,7 @@
                                             </form>
                                         @endif
                                         <a href="{{ route('admin.applications.show', $application->id) }}" class="btn btn-sm btn-outline-info">View</a>
+                                            <a href="{{ route('admin.applications.pdf-preview', $application->id) }}" target="_blank" class="btn btn-sm btn-outline-secondary">PDF</a>
                                         <a href="{{ route('admin.applications.edit', $application->id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
                                         <form action="{{ route('admin.applications.destroy', $application->id) }}" method="POST" onsubmit="return confirm('Delete this application?');" class="inline">
                                             @csrf

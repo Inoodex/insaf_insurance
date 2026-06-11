@@ -91,6 +91,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::post('applications/{application}/issue', [InsuranceApplicationController::class, 'issue'])->name('admin.applications.issue');
     Route::post('applications/{application}/send-email', [InsuranceApplicationController::class, 'sendEmail'])->name('admin.applications.send-email');
     Route::post('applications/{application}/mark-paid', [InsuranceApplicationController::class, 'markAsPaid'])->name('admin.applications.mark-paid');
+    Route::get('applications/{application}/pdf-preview', [InsuranceApplicationController::class, 'previewPdf'])->name('admin.applications.pdf-preview');
 
     // Claims Management
     Route::get('claims', [App\Http\Controllers\Admin\ClaimController::class, 'index'])->name('admin.claims.index');
