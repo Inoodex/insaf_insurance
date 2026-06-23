@@ -465,7 +465,7 @@
             <td></td>
         </tr>
         <tr class="shade">
-            <th style="padding-bottom: 5px;">Evacuación Médica de emergencia<br> <p> Repatriación sanitaria </p></th>
+            <th style="padding-bottom: 3px; padding-top: 5px;">Evacuación Médica de emergencia<br> <p> Repatriación sanitaria </p></th>
             <td style="padding-bottom: 5px; class="amount">Máx. {{ $amt('emergency_evacuation') }}<br><br>Máx. {{ $amt('medical_repatriation') }}</td>
             <td class="shade-cell">En aire - mar - tierra</td>
         </tr>
