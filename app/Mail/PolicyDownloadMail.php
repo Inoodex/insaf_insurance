@@ -8,46 +8,48 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
 
-class ApplicationIssuedMail extends Mailable
+class PolicyDownloadMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $name;
+    public $policyNumber;
+    public $startDate;
+    public $endDate;
     public $currency;
     public $amount;
-    public $date;
-    public $authCode;
-    public $cardLastFour;
-    public $name;
-    public $email;
-    public $phone;
+    public $signedUrl;
 
     public function __construct(InsuranceApplication $application)
     {
         $application->loadMissing('student');
 
+        $this->name = $application->student->full_name;
+        $this->policyNumber = $application->policy_number;
+        $this->startDate = $application->start_date->format('d M Y');
+        $this->endDate = $application->end_date->format('d M Y');
         $this->currency = $application->currency;
         $this->amount = $application->premium_amount;
-        $this->date = now()->format('M d Y, h:i A') . ' CEST';
-        $this->authCode = str_pad((string) random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-        $this->cardLastFour = str_pad((string) random_int(0, 9999), 4, '0', STR_PAD_LEFT);
-        $this->name = $application->student->full_name;
-        $this->email = $application->student->email;
-        $this->phone = $application->student->institute_phone ?? $application->student->phone_number ?? '+35677775386';
+        $this->signedUrl = URL::temporarySignedRoute(
+            'download-policy',
+            now()->addDays(7),
+            ['application' => $application->id]
+        );
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'SWISSCARE | Payment Receipt',
+            subject: 'Your Insurance Policy Document - ' . $this->policyNumber,
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            view: 'emails.student.application-issued',
+            view: 'emails.student.policy-download',
         );
     }
 

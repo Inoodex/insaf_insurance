@@ -137,13 +137,33 @@
                         <div>
                             <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Institute Name</span>
                             <div class="text-sm font-bold text-slate-800 dark:text-slate-200 mt-1">
-                                {{ $student->institute_name }}
+                                {{ $student->institute_name ?? 'N/A' }}
                             </div>
                         </div>
                         <div>
                             <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Institute Address</span>
                             <div class="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-1 leading-relaxed">
                                 {{ $student->institute_address }}
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Zip Code</span>
+                                <div class="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-1">
+                                    {{ $student->zip_code ?: 'N/A' }}
+                                </div>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">City</span>
+                                <div class="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-1">
+                                    {{ $student->city ?: 'N/A' }}
+                                </div>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Country</span>
+                                <div class="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-1">
+                                    {{ $student->country_code ?: 'N/A' }}
+                                </div>
                             </div>
                         </div>
                     </div>

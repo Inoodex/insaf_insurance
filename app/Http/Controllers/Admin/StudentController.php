@@ -47,9 +47,12 @@ class StudentController extends Controller
             'nationality' => 'required|string|max:255',
             'country_of_origin' => 'required|string|max:255',
             'phone_number' => 'nullable|string|max:255',
-            'institute_name' => 'required|string|max:255',
+            'institute_name' => 'nullable|string|max:255',
             'institute_address' => 'required|string',
             'institute_phone' => 'required|string|max:255',
+            'zip_code' => 'nullable|string|max:20',
+            'city' => 'nullable|string|max:255',
+            'country_code' => 'nullable|string|max:10',
         ]);
 
         $temporaryPassword = Str::random(10);
@@ -108,9 +111,12 @@ class StudentController extends Controller
             'nationality' => 'required|string|max:255',
             'country_of_origin' => 'required|string|max:255',
             'phone_number' => 'nullable|string|max:255',
-            'institute_name' => 'required|string|max:255',
+            'institute_name' => 'nullable|string|max:255',
             'institute_address' => 'required|string',
             'institute_phone' => 'required|string|max:255',
+            'zip_code' => 'nullable|string|max:20',
+            'city' => 'nullable|string|max:255',
+            'country_code' => 'nullable|string|max:10',
         ]);
 
         $student->update($validated);

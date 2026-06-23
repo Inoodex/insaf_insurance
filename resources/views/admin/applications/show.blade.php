@@ -66,7 +66,23 @@
                 </div>
                 <div>
                     <span class="text-white-dark block">Institute</span>
-                    <span class="text-sm">{{ optional($application->student)->institute_name }}</span>
+                    <span class="text-sm">{{ optional($application->student)->institute_name ?? 'N/A' }}</span>
+                </div>
+                <div>
+                    <span class="text-white-dark block">Phone</span>
+                    <span>{{ optional($application->student)->phone_number ?? 'N/A' }}</span>
+                </div>
+                <div>
+                    <span class="text-white-dark block">Zip Code</span>
+                    <span>{{ optional($application->student)->zip_code ?? 'N/A' }}</span>
+                </div>
+                <div>
+                    <span class="text-white-dark block">City</span>
+                    <span>{{ optional($application->student)->city ?? 'N/A' }}</span>
+                </div>
+                <div>
+                    <span class="text-white-dark block">Country</span>
+                    <span>{{ optional($application->student)->country_code ?? 'N/A' }}</span>
                 </div>
             </div>
         </div>
@@ -116,7 +132,7 @@
                 </div>
                 <div>
                     <span class="text-white-dark block">Created At</span>
-                    <span>{{ $application->created_at->format('d M Y, h:i A') }}</span>
+                    <span>{{ $application->created_at->format('d M Y') }}</span>
                 </div>
                 <div>
                     <span class="text-white-dark block">Duration</span>

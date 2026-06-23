@@ -57,7 +57,10 @@ Route::prefix('admin')->name('tyro-login.')->group(function () {
     Route::post('reset-password', [PasswordResetController::class, 'reset'])->name('password.update');
 });
 
+Route::get('download-policy/{application}', [StudentPolicyController::class, 'download'])->name('download-policy');
+
 Route::prefix('student')->group(function () {
+
     Route::middleware(['auth:student'])->group(function () {
         Route::get('dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
         Route::get('profile', [StudentProfileController::class, 'index'])->name('student.profile');
@@ -67,7 +70,6 @@ Route::prefix('student')->group(function () {
         
         Route::get('policies/{application}', [StudentPolicyController::class, 'show'])->name('student.policies.show');
         Route::get('policies/{application}/finance', [StudentPolicyController::class, 'finance'])->name('student.policies.finance');
-        Route::get('policies/{application}/download', [StudentPolicyController::class, 'download'])->name('student.policies.download');
 
         // Claims
         Route::get('claims', [StudentClaimController::class, 'index'])->name('student.claims.index');
@@ -89,7 +91,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     // Insurance Applications
     Route::resource('applications', InsuranceApplicationController::class)->names('admin.applications');
     Route::post('applications/{application}/issue', [InsuranceApplicationController::class, 'issue'])->name('admin.applications.issue');
-    Route::post('applications/{application}/send-email', [InsuranceApplicationController::class, 'sendEmail'])->name('admin.applications.send-email');
+    Route::post('applications/{application}/send-receipt', [InsuranceApplicationController::class, 'sendReceipt'])->name('admin.applications.send-receipt');
+    Route::post('applications/{application}/send-policy', [InsuranceApplicationController::class, 'sendPolicy'])->name('admin.applications.send-policy');
     Route::post('applications/{application}/mark-paid', [InsuranceApplicationController::class, 'markAsPaid'])->name('admin.applications.mark-paid');
     Route::get('applications/{application}/pdf-preview', [InsuranceApplicationController::class, 'previewPdf'])->name('admin.applications.pdf-preview');
 

@@ -8,7 +8,7 @@
             font-family: DejaVu Sans, Arial, Helvetica, sans-serif;
             font-size: 9px;
             color: #000;
-            margin: 0;
+            margin: 12px;
             padding: 0;
         }
 
@@ -25,7 +25,7 @@
 
         .e-doc-info {
             position: absolute;
-            top: 0;
+            top: 20px;
             right: 0;
             text-align: right;
             color: black;
@@ -37,6 +37,7 @@
             margin-bottom: 1px;
             /* border-bottom: 1px solid #eee; */
             padding-bottom: 2px;
+            padding-top: 10px;
         }
 
         .benefits-title {
@@ -106,7 +107,7 @@
         .benefit-table td {
             border: none;
             border-bottom: 1px solid #ffffff;
-            padding: 5px 10px;
+            padding: 0.5px 10px;
             font-size: 9px;
             line-height: 1.35;
             vertical-align: middle;
@@ -120,7 +121,7 @@
         .benefit-table .shade th,
         .benefit-table .shade td,
         .benefit-table .shade-cell {
-            background-color: #e9e9e9;
+            background-color: rgb(238, 238, 238);
         }
 
         .benefit-table .white th,
@@ -130,6 +131,12 @@
 
         .benefit-table .detail {
             font-size: 8.5px;
+        }
+
+        .benefit-table .detail2 {
+            font-size: 8.5px;
+            padding-bottom: 10px;
+            padding-top: 10px;
         }
 
         .benefit-table .amount {
@@ -195,7 +202,7 @@
 <body>
     <div class="page-content">
     <div class="header clearfix">
-        <div class="logo"><img src="{{ public_path('assets/images/swisscare_logo.png') }}" alt="Insaf Insurance" style="max-height: 40px;"></div>
+        <div class="logo"><img src="{{ public_path('assets/images/swisscare_logo.png') }}" alt="Insaf Insurance" style="max-height: 42px;"></div>
         <div class="e-doc-info">e-document issued: {{ now()->format('d.m.Y H:i') }}</div>
     </div>
 
@@ -203,14 +210,18 @@
         <div class="col">
             <div class="section-header">Policyholder</div>
             {{ strtoupper($application->student->full_name) }}<br>
-            {{ $application->student->institute_name}}, {{ $application->student->institute_address }}<br>
+            @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
+            {{ $application->student->city }} {{ $application->student->zip_code }}<br>
+            ({{ $application->student->country_code }})
             <br>
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
         <div class="col">
             <div class="section-header">Correspondence address</div>
             {{ strtoupper($application->student->full_name) }}<br>
-            {{ $application->student->institute_name}}, {{ $application->student->institute_address }}<br>
+             @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
+            {{ $application->student->city }} {{ $application->student->zip_code }}<br>
+            {{ $application->student->country_code }}
             <br>
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
@@ -244,8 +255,8 @@
     <table class="benefit-table">
         <!-- Plan level -->
         <tr class="shade">
-            <th width="27%">Plan level</th>
-            <td width="43%">{{ $application->plan->plan_level }}</td>
+            <th width="25%">Plan level</th>
+            <td width="45%">{{ $application->plan->plan_level }}</td>
             <td width="30%"></td>
         </tr>
         <!-- First destination -->
@@ -286,8 +297,8 @@
         </tr>
         <!-- Emergency medical evacuation & Medical repatriation -->
         <tr class="shade">
-            <th>Emergency medical evacuation<br>Medical repatriation</th>
-            <td class="amount">Max. {{ $amt('emergency_evacuation') }}<br>Max. {{ $amt('medical_repatriation') }}</td>
+            <th style="padding-bottom: 5px; line-height: 2">Emergency medical evacuation<br> Medical repatriation</th>
+            <td style="padding-bottom: 5px; line-height: 2;" class="amount">Max. {{ $amt('emergency_evacuation') }}<br>Max. {{ $amt('medical_repatriation') }}</td>
             <td class="shade-cell">By air, land or sea</td>
         </tr>
         <!-- Repatriation of mortal remains -->
@@ -300,9 +311,9 @@
         <tr class="shade">
             <th>Luggage</th>
             <td class="amount">Max. {{ $amt('luggage') }}</td>
-            <td class="detail">
+            <td class="detail2">
                 Loss, damage, robbery or theft of 
-                <br>  luggage<br><br>
+                <br>  luggage <br> <br>
                 (Deductible of € 250.00 per claim)
             </td>
         </tr>
@@ -375,23 +386,25 @@
 
     <div class="page-content">
     <div class="header clearfix">
-        <div class="logo"><img src="{{ public_path('assets/images/swisscare_logo.png') }}" alt="Insaf Insurance" style="max-height: 40px;"></div>
+        <div class="logo"><img src="{{ public_path('assets/images/swisscare_logo.png') }}" alt="Insaf Insurance" style="max-height: 42px;"></div>
         <div class="e-doc-info">e-documento emitido: {{ now()->format('d.m.Y H:i') }}</div>
     </div>
 
     <div class="row clearfix">
         <div class="col">
-            <div class="section-header">Tenedor de poliza</div>
+            <div class="section-header">Tenedor de póliza</div>
             {{ strtoupper($application->student->full_name) }}<br>
-            {{ $application->student->institute_name}}, {{ $application->student->institute_address }}<br>
-            <br>
+            @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
+            {{ $application->student->city }} {{ $application->student->zip_code }}<br>
+            ({{ $application->student->country_code }})
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
         <div class="col">
             <div class="section-header">Dirección de correspondencia</div>
             {{ strtoupper($application->student->full_name) }}<br>
-            {{ $application->student->institute_name}}, {{ $application->student->institute_address }}<br>
-            <br>
+            @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
+            {{ $application->student->city }} {{ $application->student->zip_code }}<br>
+            {{ $application->student->country_code }}
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
         <div class="col">
@@ -415,9 +428,9 @@
     <div class="benefits-title">Cobertura de seguro</div>
     <table class="benefit-table">
         <tr class="shade">
-            <th width="27%">Nombre del plan</th>
-            <td width="43%">{{ $application->plan->plan_level }}</td>
-            <td width="30%"></td>
+            <th width="25%">Nombre del plan</th>
+            <td width="48%">{{ $application->plan->plan_level }}</td>
+            <td width="27%"></td>
         </tr>
         <tr class="white">
             <th>Primer destino</th>
@@ -425,7 +438,8 @@
         </tr>
         <tr class="shade">
             <th>Territorialidad</th>
-            <td>En todo el mundo, excluidos los territorios de EE.UU., Canadá y el país de origen</td>
+            <td>En todo el mundo, excluidos los territorios de EE.UU., Canadá y el <br>
+                país de origen</td>
             <td>Países Schengen incluidos</td>
         </tr>
         <tr class="white">
@@ -451,9 +465,8 @@
             <td></td>
         </tr>
         <tr class="shade">
-            <th>Evacuación Médica de 
-                <br>emergencia<br>Repatriación sanitaria</th>
-            <td class="amount">Máx. {{ $amt('emergency_evacuation') }}<br><br>Máx. {{ $amt('medical_repatriation') }}</td>
+            <th style="padding-bottom: 5px;">Evacuación Médica de emergencia<br> <p> Repatriación sanitaria </p></th>
+            <td style="padding-bottom: 5px; class="amount">Máx. {{ $amt('emergency_evacuation') }}<br><br>Máx. {{ $amt('medical_repatriation') }}</td>
             <td class="shade-cell">En aire - mar - tierra</td>
         </tr>
         <tr class="white">
@@ -465,7 +478,7 @@
         <tr class="shade">
             <th>Equipaje de viaje</th>
             <td class="amount">Máx. {{ $amt('luggage') }}</td>
-            <td class="detail">
+            <td class="detail2">
                 Pérdida, daño, robo o hurto de 
                 <br>
                 equipaje<br><br>
@@ -473,12 +486,12 @@
             </td>
         </tr>
         <tr class="white">
-            <th>Accidente personal - Muerte</th>
+            <th>Accidente personal -Muerte</th>
             <td class="amount">Máx. {{ $amt('accidental_death') }}</td>
             <td rowspan="2">Suma global</td>
         </tr>
         <tr class="white">
-            <th>Accidente personal - Invalidez</th>
+            <th>Accidente personal -Invalidez</th>
             <td class="amount">Máx. {{ $amt('accidental_disability') }}</td>
         </tr>
         <tr class="shade">

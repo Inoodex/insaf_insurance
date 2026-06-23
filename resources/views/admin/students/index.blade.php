@@ -63,7 +63,7 @@
                                 </td>
                                 {{-- <td>{{ $student->nationality }}</td> --}}
                                 <td>
-                                    <div class="text-sm">{{ Str::limit($student->institute_name, 35) }}</div>
+                                    <div class="text-sm">{{ Str::limit($student->institute_name, 35) ?? 'N/A' }}</div>
                                 </td>
                                 <td>
                                     @if ($student->password_changed)

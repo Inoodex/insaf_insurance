@@ -55,6 +55,7 @@
                             <th>Duration</th> --}}
                             <th>Payment</th>
                             <th>Status</th>
+                            <th class="text-center"> Send Emails </th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -100,6 +101,24 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="flex items-center justify-center gap-2">
+                                     @if(!in_array($application->status, ['expired', 'cancelled']))
+                                            <form action="{{ route('admin.applications.send-receipt', $application->id) }}" method="POST" class="inline" onsubmit="return confirm('Send payment receipt to student?');">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-outline-primary" title="Send Payment Receipt">
+                                                    Send Receipt
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('admin.applications.send-policy', $application->id) }}" method="POST" class="inline" onsubmit="return confirm('Send policy document to student?');">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-outline-secondary" title="Send Policy Document">
+                                                    Send Policy
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="flex items-center justify-center gap-2">
                                         @if(!$application->paid_on)
                                             <form action="{{ route('admin.applications.mark-paid', $application->id) }}" method="POST" class="inline">
                                                 @csrf
@@ -111,14 +130,20 @@
                                                 </button>
                                             </form>
                                         @endif
-                                        @if(!in_array($application->status, ['expired', 'cancelled']))
-                                            <form action="{{ route('admin.applications.send-email', $application->id) }}" method="POST" class="inline" onsubmit="return confirm('{{ $application->status === 'draft' ? 'This will generate a policy number, mark the application as Sent, and email the billing summary to the student. Continue?' : 'Send the policy-issued email with billing summary to the student?' }}');">
+                                        {{-- @if(!in_array($application->status, ['expired', 'cancelled']))
+                                            <form action="{{ route('admin.applications.send-receipt', $application->id) }}" method="POST" class="inline" onsubmit="return confirm('Send payment receipt to student?');">
                                                 @csrf
-                                                <button type="submit" class="btn btn-sm btn-outline-secondary" title="Send Policy Email">
-                                                    {{ $application->status === 'draft' ? 'Issue & Email' : 'Email Application' }}
+                                                <button type="submit" class="btn btn-sm btn-outline-primary" title="Send Payment Receipt">
+                                                    Send Receipt
                                                 </button>
                                             </form>
-                                        @endif
+                                            <form action="{{ route('admin.applications.send-policy', $application->id) }}" method="POST" class="inline" onsubmit="return confirm('Send policy document to student?');">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-outline-secondary" title="Send Policy Document">
+                                                    Send Policy
+                                                </button>
+                                            </form>
+                                        @endif --}}
                                         <a href="{{ route('admin.applications.show', $application->id) }}" class="btn btn-sm btn-outline-info">View</a>
                                             <a href="{{ route('admin.applications.pdf-preview', $application->id) }}" target="_blank" class="btn btn-sm btn-outline-secondary">PDF</a>
                                         <a href="{{ route('admin.applications.edit', $application->id) }}" class="btn btn-sm btn-outline-primary">Edit</a>

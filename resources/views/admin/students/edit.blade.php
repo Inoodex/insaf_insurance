@@ -65,8 +65,8 @@
                     @error('phone_number') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">
-                    <label for="institute_name">Institute Name <span class="text-danger">*</span></label>
-                    <input type="text" name="institute_name" id="institute_name" class="form-input" required value="{{ old('institute_name', $student->institute_name) }}" />
+                    <label for="institute_name">Institute Name</label>
+                    <input type="text" name="institute_name" id="institute_name" class="form-input" value="{{ old('institute_name', $student->institute_name) }}" />
                     @error('institute_name') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">
@@ -78,6 +78,21 @@
                     <label for="institute_address">Institute Address <span class="text-danger">*</span></label>
                     <textarea name="institute_address" id="institute_address" class="form-textarea" required rows="2">{{ old('institute_address', $student->institute_address) }}</textarea>
                     @error('institute_address') <span class="text-danger text-sm">{{ $message }}</span> @enderror
+                </div>
+                <div class="form-group">
+                    <label for="zip_code">Zip Code</label>
+                    <input type="text" name="zip_code" id="zip_code" class="form-input" value="{{ old('zip_code', $student->zip_code) }}" />
+                    @error('zip_code') <span class="text-danger text-sm">{{ $message }}</span> @enderror
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city" class="form-input" value="{{ old('city', $student->city) }}" />
+                    @error('city') <span class="text-danger text-sm">{{ $message }}</span> @enderror
+                </div>
+                <div class="form-group">
+                    <label for="country_code">Country</label>
+                    <input type="text" name="country_code" id="country_code" class="form-input" value="{{ old('country_code', $student->country_code) }}" />
+                    @error('country_code') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                 </div>
             </div>
 

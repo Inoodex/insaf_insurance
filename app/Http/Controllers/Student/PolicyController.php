@@ -31,7 +31,7 @@ class PolicyController extends Controller
 
     public function download(InsuranceApplication $application)
     {
-        if ($application->student_id != Auth::guard('student')->id()) {
+        if (!request()->hasValidSignature() && $application->student_id != Auth::guard('student')->id()) {
             abort(403);
         }
 

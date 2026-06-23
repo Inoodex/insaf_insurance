@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Mail\ApplicationIssuedMail;
+use App\Mail\PolicyDownloadMail;
 use App\Models\BenefitCoverage;
 use App\Models\EmailLog;
 use App\Models\InsuranceApplication;
@@ -159,33 +161,40 @@ class InsuranceApplicationController extends Controller
             ->with('success', 'Policy ' . $application->policy_number . ' has been issued and emailed to the student.');
     }
 
-    public function sendEmail(InsuranceApplication $application)
+    public function sendReceipt(InsuranceApplication $application)
     {
         if (in_array($application->status, ['expired', 'cancelled'], true)) {
             return back()->with('error', 'Cannot email a policy that is ' . $application->status . '.');
         }
 
-        $application->status = 'sent';
-        $application->save();
-
-        $this->sendPolicyIssuedNotification($application, force: true);
-
-        return back()->with('success', 'Policy ' . $application->policy_number . ' has been issued and emailed to ' . $application->student->email . '.');
-    }
-
-    private function sendPolicyIssuedNotification(InsuranceApplication $application, bool $force = false): void
-    {
-        if (!$force) {
-            $alreadySent = EmailLog::where('application_id', $application->id)
-                ->where('email_type', 'policy_issued')
-                ->where('status', 'sent')
-                ->exists();
-
-            if ($alreadySent) {
-                return;
-            }
+        if ($application->status === 'draft') {
+            $application->status = 'sent';
+            $application->save();
         }
 
+        $this->sendReceiptEmail($application);
+
+        return back()->with('success', 'Payment receipt sent to ' . $application->student->email . '.');
+    }
+
+    public function sendPolicy(InsuranceApplication $application)
+    {
+        if (in_array($application->status, ['expired', 'cancelled'], true)) {
+            return back()->with('error', 'Cannot email a policy that is ' . $application->status . '.');
+        }
+
+        if ($application->status === 'draft') {
+            $application->status = 'sent';
+            $application->save();
+        }
+
+        $this->sendPolicyEmail($application);
+
+        return back()->with('success', 'Policy document sent to ' . $application->student->email . '.');
+    }
+
+    private function sendReceiptEmail(InsuranceApplication $application): void
+    {
         $application->loadMissing(['student', 'plan', 'benefitCoverages']);
 
         $subject = 'Your Insurance Policy ' . $application->policy_number . ' Has Been Issued';
@@ -216,6 +225,54 @@ class InsuranceApplicationController extends Controller
                 'error_message' => $e->getMessage(),
             ]);
         }
+    }
+
+    private function sendPolicyEmail(InsuranceApplication $application): void
+    {
+        $application->loadMissing(['student', 'plan', 'benefitCoverages']);
+
+        try {
+            Mail::to($application->student->email)
+                ->send(new PolicyDownloadMail($application));
+
+            EmailLog::create([
+                'student_id' => $application->student_id,
+                'application_id' => $application->id,
+                'user_id' => Auth::id(),
+                'email_type' => 'policy_download',
+                'subject' => 'Your Insurance Policy Document - ' . $application->policy_number,
+                'recipient_email' => $application->student->email,
+                'status' => 'sent',
+                'sent_at' => now(),
+            ]);
+        } catch (\Exception $e) {
+            EmailLog::create([
+                'student_id' => $application->student_id,
+                'application_id' => $application->id,
+                'user_id' => Auth::id(),
+                'email_type' => 'policy_download',
+                'subject' => 'Your Insurance Policy Document - ' . $application->policy_number,
+                'recipient_email' => $application->student->email,
+                'status' => 'failed',
+                'error_message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    private function sendPolicyIssuedNotification(InsuranceApplication $application, bool $force = false): void
+    {
+        if (!$force) {
+            $alreadySent = EmailLog::where('application_id', $application->id)
+                ->where('email_type', 'policy_issued')
+                ->where('status', 'sent')
+                ->exists();
+
+            if ($alreadySent) {
+                return;
+            }
+        }
+
+        $this->sendReceiptEmail($application);
     }
 
     public function markAsPaid(InsuranceApplication $application)

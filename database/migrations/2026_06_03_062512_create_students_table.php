@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('nationality');
             $table->string('country_of_origin');
             $table->string('phone_number')->nullable();
-            $table->string('institute_name');
+            $table->string('institute_name')->nullable();
             $table->text('institute_address');
             $table->string('password');
             $table->string('temporary_password')->nullable();
