@@ -106,8 +106,8 @@
         .benefit-table th,
         .benefit-table td {
             border: none;
-            border-bottom: 1px solid #ffffff;
-            padding: 0.5px 10px;
+            border-bottom: none;
+            padding: 4px 10px;
             font-size: 9px;
             line-height: 1.35;
             vertical-align: middle;
@@ -121,12 +121,45 @@
         .benefit-table .shade th,
         .benefit-table .shade td,
         .benefit-table .shade-cell {
-            background-color: rgb(238, 238, 238);
+            background-color: #F5F5F5;
+            /* line-height: 2; */
+            padding: 4px 10px;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+        }
+
+        .benefit-table .shade2 th,
+        .benefit-table .shade2 td,
+        .benefit-table .shade-cell {
+            background-color: #F5F5F5;
+            /* line-height: 2; */
+            padding: 4px 10px;
+            border-bottom: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
         }
 
         .benefit-table .white th,
         .benefit-table .white td {
             background-color: #ffffff;
+        }
+
+        .benefit-table .white2-top th,
+        .benefit-table .white2-top td {
+            background-color: #ffffff;
+            padding-top: 10px;
+            padding-bottom: 1px;
+            line-height: 1.2;
+        }
+
+        .benefit-table .white2-bottom th,
+        .benefit-table .white2-bottom td {
+            background-color: #ffffff;
+            padding-top: 1px;
+            padding-bottom: 10px;
+            line-height: 1.2;
         }
 
         .benefit-table .detail {
@@ -154,9 +187,9 @@
         }
 
         .footer-table th {
-            background-color: #ccc;
+            background-color: #cccccc;
             border: none;
-            color: #000;
+            color: #000000;
             font-weight: bold;
             text-align: center;
             padding: 5px;
@@ -175,7 +208,7 @@
         }
 
         .signature-img {
-            width: 350px;
+            width: 280px;
             height: auto;
         }
 
@@ -184,13 +217,15 @@
             min-height: 100vh;
         }
 
-        .legal-notice, .legal-notice2 {
-            font-size: 7px;
+        .legal-notice {
+            font-size: 6.5px;
             color: #000;
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
+            /* border-top: 0.5px solid #ccc; */
+            padding-top: 5px;
         }
 
         .page-break {
@@ -225,7 +260,7 @@
             <br>
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
-        <div class="col">
+        <div class="col" style="padding-top: 18px;">
             {{-- <div class="section-header">Contact</div> --}}
            <strong>Email</strong>  {{ $application->student->email }}<br>
             <strong>Phone number</strong> {{ $application->student->institute_phone ?? '+35677775386' }}
@@ -254,10 +289,10 @@
     <div class="benefits-title">Benefits summary</div>
     <table class="benefit-table">
         <!-- Plan level -->
-        <tr class="shade">
-            <th width="25%">Plan level</th>
-            <td width="45%">{{ $application->plan->plan_level }}</td>
-            <td width="30%"></td>
+        <tr class="shade2">
+            <th width="25%" style="border-top: none;">Plan level</th>
+            <td width="45%" style="border-top: none;">{{ $application->plan->plan_level }}</td>
+            <td width="30%" style="border-top: none;"></td>
         </tr>
         <!-- First destination -->
         <tr class="white">
@@ -297,8 +332,8 @@
         </tr>
         <!-- Emergency medical evacuation & Medical repatriation -->
         <tr class="shade">
-            <th style="padding-bottom: 5px; line-height: 2">Emergency medical evacuation<br> Medical repatriation</th>
-            <td style="padding-bottom: 5px; line-height: 2;" class="amount">Max. {{ $amt('emergency_evacuation') }}<br>Max. {{ $amt('medical_repatriation') }}</td>
+            <th style="padding-bottom: 8px; line-height: 1.8">Emergency medical evacuation<br> Medical repatriation</th>
+            <td style="padding-bottom: 8px; line-height: 1.8;" class="amount">Max. {{ $amt('emergency_evacuation') }}<br>Max. {{ $amt('medical_repatriation') }}</td>
             <td class="shade-cell">By air, land or sea</td>
         </tr>
         <!-- Repatriation of mortal remains -->
@@ -318,13 +353,13 @@
             </td>
         </tr>
         <!-- Accidental death -->
-        <tr class="white">
+        <tr class="white2-top">
             <th>Accidental death</th>
             <td class="amount">Max. {{ $amt('accidental_death') }}</td>
             <td rowspan="2">Lump sum</td>
         </tr>
         <!-- Accidental disability -->
-        <tr class="white">
+        <tr class="white2-bottom">
             <th>Accidental disability</th>
             <td class="amount">Max. {{ $amt('accidental_disability') }}</td>
         </tr>
@@ -377,7 +412,7 @@
     </div>
 
     <div class="legal-notice">
-        Legal notice: The insurer is Anker Insurance Company n.v. at Paterswoldseweg 812 at 9728 BM Groningen. Anker is
+        Legal notice : The insurer is Anker Insurance Company n.v. at Paterswoldseweg 812 at 9728 BM Groningen. Anker is
         registered with the Autoriteit Financiële Markten (AFM) (the Dutch Authority for the Financial Markets) under
         number 12000661 and is authorised by De Nederlandsche Bank ("DNB").
     </div>
@@ -407,7 +442,7 @@
             {{ $application->student->country_code }}
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
-        <div class="col">
+        <div class="col" style="padding-top: 18px;">
             {{-- <div class="section-header">Contacto</div> --}}
              <strong>Email</strong>  {{ $application->student->email }}<br>
             <strong>Teléfono</strong> {{ $application->student->institute_phone ?? '+35677775386' }}
@@ -428,9 +463,9 @@
     <div class="benefits-title">Cobertura de seguro</div>
     <table class="benefit-table">
         <tr class="shade">
-            <th width="25%">Nombre del plan</th>
-            <td width="48%">{{ $application->plan->plan_level }}</td>
-            <td width="27%"></td>
+            <th width="25%" style="border-top: none;">Nombre del plan</th>
+            <td width="48%" style="border-top: none;">{{ $application->plan->plan_level }}</td>
+            <td width="27%" style="border-top: none;"></td>
         </tr>
         <tr class="white">
             <th>Primer destino</th>
@@ -465,8 +500,8 @@
             <td></td>
         </tr>
         <tr class="shade">
-            <th style="padding-bottom: 3px; padding-top: 5px;">Evacuación Médica de emergencia<br> <p> Repatriación sanitaria </p></th>
-            <td style="padding-bottom: 5px; class="amount">Máx. {{ $amt('emergency_evacuation') }}<br><br>Máx. {{ $amt('medical_repatriation') }}</td>
+            <th style="padding-bottom: 8px; padding-top: 5px; line-height: 1.8;">Evacuación Médica de emergencia<br> <p> Repatriación sanitaria </p></th>
+            <td style="padding-bottom: 8px; line-height: 1.8;" class="amount">Máx. {{ $amt('emergency_evacuation') }}<br><br>Máx. {{ $amt('medical_repatriation') }}</td>
             <td class="shade-cell">En aire - mar - tierra</td>
         </tr>
         <tr class="white">
@@ -485,12 +520,12 @@
                 (Franquicia de € 250.00 por siniestro)
             </td>
         </tr>
-        <tr class="white">
+        <tr class="white2-top">
             <th>Accidente personal -Muerte</th>
             <td class="amount">Máx. {{ $amt('accidental_death') }}</td>
             <td rowspan="2">Suma global</td>
         </tr>
-        <tr class="white">
+        <tr class="white2-bottom">
             <th>Accidente personal -Invalidez</th>
             <td class="amount">Máx. {{ $amt('accidental_disability') }}</td>
         </tr>
@@ -541,10 +576,10 @@
         </div> --}}
     </div>
 
-    <div class="legal-notice2">
-        Aviso legal: La aseguradora es Anker Insurance Company n.v. con domicilio en Paterswoldseweg 812,
-        9728 BM Groningen. Anker está registrada ante la Autoriteit Financiële Markten (AFM), la autoridad
-        holandesa de los mercados financieros, con el número 12000661 y está autorizada por De Nederlandsche Bank ("DNB").
+    <div class="legal-notice">
+        Legal notice : The insurer is Anker Insurance Company n.v. at Paterswoldseweg 812 at 9728 BM Groningen. Anker is
+        registered with the Autoriteit Financiële Markten (AFM) (the Dutch Authority for the Financial Markets) under
+        number 12000661 and is authorised by De Nederlandsche Bank ("DNB").
     </div>
     </div>
 </body>
