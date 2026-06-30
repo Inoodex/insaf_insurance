@@ -8,7 +8,7 @@
             font-family: DejaVu Sans, Arial, Helvetica, sans-serif;
             font-size: 9px;
             color: #000;
-            margin: 12px;
+            margin: 13px;
             padding: 0;
         }
 
@@ -25,7 +25,7 @@
 
         .e-doc-info {
             position: absolute;
-            top: 20px;
+            top: 30px;
             right: 0;
             text-align: right;
             color: black;
@@ -37,7 +37,7 @@
             margin-bottom: 1px;
             /* border-bottom: 1px solid #eee; */
             padding-bottom: 2px;
-            padding-top: 10px;
+            padding-top: 5px;
         }
 
         .benefits-title {
@@ -69,7 +69,7 @@
             font-size: 10px;
             font-weight: bold;
             color: #000;
-            margin-top: 5px;
+            padding-top: 5px;
         }
 
         .policy-number {
@@ -84,7 +84,7 @@
         }
 
         th {
-            background-color: #f5f5f5;
+            background-color: #eeeeee;
             text-align: left;
             padding: 5px;
             font-size: 9px;
@@ -121,9 +121,9 @@
         .benefit-table .shade th,
         .benefit-table .shade td,
         .benefit-table .shade-cell {
-            background-color: #F5F5F5;
+            background-color: #eeeeee;
             /* line-height: 2; */
-            padding: 4px 10px;
+            padding: 1.5px 10px;
             border-top: 1px solid #ddd;
             border-bottom: 1px solid #ddd;
             border-left: none;
@@ -133,9 +133,20 @@
         .benefit-table .shade2 th,
         .benefit-table .shade2 td,
         .benefit-table .shade-cell {
-            background-color: #F5F5F5;
+            background-color: #eeeeee;
+            line-height: 1.2;
+            padding: 1px 10px;
+            border-bottom: 1px solid #ddd;
+            border-left: none;
+            border-right: none;
+        }
+
+         .benefit-table .shade3 th,
+        .benefit-table .shade3 td,
+        .benefit-table .shade-cell {
+            background-color: #eeeeee;
             /* line-height: 2; */
-            padding: 4px 10px;
+            padding: 6px 10px;
             border-bottom: 1px solid #ddd;
             border-left: none;
             border-right: none;
@@ -144,29 +155,87 @@
         .benefit-table .white th,
         .benefit-table .white td {
             background-color: #ffffff;
+            padding: 1px 10px;
+        }
+
+        .benefit-table .white4 th,
+        .benefit-table .white4 td {
+            background-color: #ffffff;
+            padding: 1px 10px;
+        }
+
+        .benefit-table .white5 th,
+        .benefit-table .white5 td {
+            background-color: #ffffff;
+            padding: 2px 10px;
         }
 
         .benefit-table .white2-top th,
         .benefit-table .white2-top td {
             background-color: #ffffff;
-            padding-top: 10px;
+            padding-top: 12px;
             padding-bottom: 1px;
-            line-height: 1.2;
+            line-height: 1.0;
         }
 
         .benefit-table .white2-bottom th,
         .benefit-table .white2-bottom td {
             background-color: #ffffff;
             padding-top: 1px;
-            padding-bottom: 10px;
-            line-height: 1.2;
+            padding-bottom: 12px;
+            line-height: 1.0;
         }
+
+        .benefit-table .white3 th,
+        .benefit-table .white3 td {
+            padding: 5px 10px;
+            vertical-align: top;
+        }
+
+        /* .benefit-table .white3 .amount {
+            line-height: 1.8; 
+            white-space: nowrap;
+        } */
+        
+        /* .benefit-table .white3-top th
+         {
+            background-color: #ffffff;
+            padding-top: 5px;
+            padding-bottom: 1px;
+            line-height: 1.5;
+        }
+
+        .benefit-table .white3-bottom th
+         {
+            background-color: #ffffff;
+            padding-top: 1px;
+            padding-bottom: 5px;
+            line-height: 1.5;
+        }
+        .benefit-table .white3-top td
+       {
+            padding-top: 5px;
+            padding-bottom: 1px;
+        }
+
+         .benefit-table .white3-bottom td
+       {
+            padding-top: 1px;
+            padding-bottom: 10px;
+        } */
 
         .benefit-table .detail {
             font-size: 8.5px;
+            line-height: 1.25;
         }
 
         .benefit-table .detail2 {
+            font-size: 8.5px;
+            padding-bottom: 12px;
+            padding-top: 10px;
+        }
+
+        .benefit-table .detail3 {
             font-size: 8.5px;
             padding-bottom: 10px;
             padding-top: 10px;
@@ -192,14 +261,14 @@
             color: #000000;
             font-weight: bold;
             text-align: center;
-            padding: 5px;
+            padding: 2px;
         }
 
         .footer-table td {
             border: none;
             text-align: center;
             color: #000;
-            padding: 6px 5px;
+            padding: 5px 5px;
         }
 
         .signature-section {
@@ -208,7 +277,7 @@
         }
 
         .signature-img {
-            width: 280px;
+            width: 350px;
             height: auto;
         }
 
@@ -267,7 +336,7 @@
         </div>
     </div>
 
-    <div class="row" style="margin-top: 10px;">
+    <div class="row" style="margin-top: 8px;">
         <div class="section-header">Insured person</div>
         {{ strtoupper($application->student->full_name) }} | {{ ucfirst($application->student->gender) }} |
         {{ $application->student->date_of_birth->format('d.m.Y') }} | {{ $application->student->passport_number }} |
@@ -289,7 +358,7 @@
     <div class="benefits-title">Benefits summary</div>
     <table class="benefit-table">
         <!-- Plan level -->
-        <tr class="shade2">
+        <tr style="line-height: 1.2;" class="shade">
             <th width="25%" style="border-top: none;">Plan level</th>
             <td width="45%" style="border-top: none;">{{ $application->plan->plan_level }}</td>
             <td width="30%" style="border-top: none;"></td>
@@ -302,7 +371,7 @@
         <!-- Territories -->
         <tr class="shade">
             <th>Territories</th>
-            <td>Worldwide excluding US territories, Canada and country of origin</td>
+            <td style="line-height: 1.2;">Worldwide excluding US territories, Canada and country of origin</td>
             <td>Schengen countries are included</td>
         </tr>
         <!-- Notification -->
@@ -324,16 +393,16 @@
             </td>
         </tr>
         <!-- Sea and mountain search and rescue -->
-        <tr class="white">
-            <th>Sea and mountain search and <br>
+        <tr class="white4">
+            <th style="line-height: 1.25;">Sea and mountain search and <br>
                 rescue</th>
             <td class="amount">Max. {{ $amt('sea_mountain_rescue') }}</td>
             <td></td>
         </tr>
         <!-- Emergency medical evacuation & Medical repatriation -->
         <tr class="shade">
-            <th style="padding-bottom: 8px; line-height: 1.8">Emergency medical evacuation<br> Medical repatriation</th>
-            <td style="padding-bottom: 8px; line-height: 1.8;" class="amount">Max. {{ $amt('emergency_evacuation') }}<br>Max. {{ $amt('medical_repatriation') }}</td>
+            <th style="padding-bottom: 8px; line-height: 2.05">Emergency medical evacuation<br> Medical repatriation</th>
+            <td style="padding-bottom: 8px; line-height: 2;" class="amount">Max. {{ $amt('emergency_evacuation') }}<br>Max. {{ $amt('medical_repatriation') }}</td>
             <td class="shade-cell">By air, land or sea</td>
         </tr>
         <!-- Repatriation of mortal remains -->
@@ -343,13 +412,13 @@
             <td></td>
         </tr>
         <!-- Luggage -->
-        <tr class="shade">
+        <tr class="shade3">
             <th>Luggage</th>
             <td class="amount">Max. {{ $amt('luggage') }}</td>
-            <td class="detail2">
+            <td style="padding-bottom: 3px; padding-top: 3px;">
                 Loss, damage, robbery or theft of 
-                <br>  luggage <br> <br>
-                (Deductible of € 250.00 per claim)
+                <br>  luggage <br>
+                <p>(Deductible of € 250.00 per claim) </p>
             </td>
         </tr>
         <!-- Accidental death -->
@@ -364,7 +433,7 @@
             <td class="amount">Max. {{ $amt('accidental_disability') }}</td>
         </tr>
         <!-- Third party liability -->
-        <tr class="shade">
+        <tr style="border-bottom: 1px solid #ddd;" class="shade2">
             <th>Third party liability</th>
             <td colspan="2" class="amount">Max. {{ $amt('third_party_liability') }}</td>
         </tr>
@@ -467,17 +536,17 @@
             <td width="48%" style="border-top: none;">{{ $application->plan->plan_level }}</td>
             <td width="27%" style="border-top: none;"></td>
         </tr>
-        <tr class="white">
+        <tr class="white4">
             <th>Primer destino</th>
             <td colspan="2">{{ $application->first_destination }}</td>
         </tr>
         <tr class="shade">
             <th>Territorialidad</th>
-            <td>En todo el mundo, excluidos los territorios de EE.UU., Canadá y el <br>
+            <td style="padding-bottom: 3px; line-height: 1.1;">En todo el mundo, excluidos los territorios de EE.UU., Canadá y el <br>
                 país de origen</td>
             <td>Países Schengen incluidos</td>
         </tr>
-        <tr class="white">
+        <tr style="border-bottom: 1px solid #ddd;" class="white">
             <th>Aviso</th>
             <td>Seguro sin copago para la cobertura médica</td>
             <td>Sin período de carencia</td>
@@ -494,18 +563,18 @@
                 Medicamentos prescritos
             </td>
         </tr>
-        <tr class="white">
+        <tr class="white4">
             <th>Búsqueda & rescate</th>
             <td class="amount">Máx. {{ $amt('sea_mountain_rescue') }}</td>
             <td></td>
         </tr>
         <tr class="shade">
-            <th style="padding-bottom: 8px; padding-top: 5px; line-height: 1.8;">Evacuación Médica de emergencia<br> <p> Repatriación sanitaria </p></th>
-            <td style="padding-bottom: 8px; line-height: 1.8;" class="amount">Máx. {{ $amt('emergency_evacuation') }}<br><br>Máx. {{ $amt('medical_repatriation') }}</td>
+            <th style="padding-bottom: 4px; padding-top: 8px; line-height: 1.2;">Evacuación Médica de emergencia<br> <p> Repatriación sanitaria </p></th>
+            <td style="padding-bottom: 4px; line-height: 1.0;" class="amount">Máx. {{ $amt('emergency_evacuation') }}<br><br>Máx. {{ $amt('medical_repatriation') }}</td>
             <td class="shade-cell">En aire - mar - tierra</td>
         </tr>
         <tr class="white">
-            <th>Repatriación de restos 
+            <th style="line-height: 1.25;">Repatriación de restos 
                 <br> mortales</th>
             <td class="amount">Máx. {{ $amt('repatriation_mortal_remains') }}</td>
             <td></td>
@@ -513,23 +582,65 @@
         <tr class="shade">
             <th>Equipaje de viaje</th>
             <td class="amount">Máx. {{ $amt('luggage') }}</td>
-            <td class="detail2">
+            <td class="detail3" style="padding-bottom: 8px; padding-top: 8px; line-height: 1.25;">
                 Pérdida, daño, robo o hurto de 
                 <br>
-                equipaje<br><br>
+                equipaje<br> <br>
                 (Franquicia de € 250.00 por siniestro)
             </td>
         </tr>
-        <tr class="white2-top">
-            <th>Accidente personal -Muerte</th>
-            <td class="amount">Máx. {{ $amt('accidental_death') }}</td>
-            <td rowspan="2">Suma global</td>
-        </tr>
-        <tr class="white2-bottom">
-            <th>Accidente personal -Invalidez</th>
-            <td class="amount">Máx. {{ $amt('accidental_disability') }}</td>
-        </tr>
-        <tr class="shade">
+            {{-- <tr class="white3">
+            <th>
+                Accidente personal -Muerte<br>
+                Accidente personal -Invalidez
+            </th>
+
+            <td class="amount">
+                Máx. {{ $amt('accidental_death') }}<br>
+                Máx. {{ $amt('accidental_disability') }}
+            </td>
+
+            <td>Suma global</td>
+        </tr> --}}
+        <tr>
+    <!-- Left column -->
+    <th style="padding:0; vertical-align:top;">
+        <table style="width:100%; border-collapse:collapse;">
+            <tr>
+                <td style="border:none; padding:5px 10px 8px 10px;">
+                    Accidente personal -Muerte
+                </td>
+            </tr>
+            <tr>
+                <td style="border:none; padding:0px 10px 8px 10px;">
+                    Accidente personal -Invalidez
+                </td>
+            </tr>
+        </table>
+    </th>
+
+    <!-- Amount column -->
+    <td style="padding:0; vertical-align:top;">
+        <table style="width:100%; border-collapse:collapse;">
+            <tr>
+                <td class="amount" style="border:none; padding:7px 10px 0 10px;">
+                    Máx. {{ $amt('accidental_death') }}
+                </td>
+            </tr>
+            <tr>
+                <td class="amount" style="border:none; padding:0 10px 7px 10px;">
+                    Máx. {{ $amt('accidental_disability') }}
+                </td>
+            </tr>
+        </table>
+    </td>
+
+    <!-- Right column -->
+    <td style="vertical-align:middle;">
+        Suma global
+    </td>
+</tr>
+        <tr class="shade2">
             <th>Responsabilidad civil</th>
             <td colspan="2" class="amount">Máx. {{ $amt('third_party_liability') }}</td>
         </tr>
