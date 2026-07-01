@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use App\Models\EmailLog;
-use App\Mail\StudentWelcomeMail;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -52,7 +52,7 @@ class StudentController extends Controller
             'institute_phone' => 'required|string|max:255',
             'zip_code' => 'nullable|string|max:20',
             'city' => 'nullable|string|max:255',
-            'country_code' => 'nullable|string|max:10',
+            'country_code' => 'nullable|string|max:255',
         ]);
 
         $temporaryPassword = Str::random(10);
@@ -62,32 +62,7 @@ class StudentController extends Controller
 
         $student = Student::create($validated);
 
-        // Send Welcome Email
-        try {
-            Mail::to($student->email)->send(new StudentWelcomeMail($student, $temporaryPassword));
-
-            EmailLog::create([
-                'student_id' => $student->id,
-                'user_id' => Auth::id(),
-                'email_type' => 'welcome_credentials',
-                'subject' => 'Welcome to Insaf Insurance - Your Login Credentials',
-                'recipient_email' => $student->email,
-                'status' => 'sent',
-                'sent_at' => now(),
-            ]);
-        } catch (\Exception $e) {
-            EmailLog::create([
-                'student_id' => $student->id,
-                'user_id' => Auth::id(),
-                'email_type' => 'welcome_credentials',
-                'subject' => 'Welcome to Insaf Insurance - Your Login Credentials',
-                'recipient_email' => $student->email,
-                'status' => 'failed',
-                'error_message' => $e->getMessage(),
-            ]);
-        }
-
-        return redirect()->route('admin.students.index')->with('success', 'Student registered and credentials sent.');
+        return redirect()->route('admin.students.index')->with('success', 'Student registered successfully.');
     }
 
     public function show(Student $student)
@@ -116,7 +91,7 @@ class StudentController extends Controller
             'institute_phone' => 'required|string|max:255',
             'zip_code' => 'nullable|string|max:20',
             'city' => 'nullable|string|max:255',
-            'country_code' => 'nullable|string|max:10',
+            'country_code' => 'nullable|string|max:255',
         ]);
 
         $student->update($validated);
@@ -139,32 +114,6 @@ class StudentController extends Controller
             'password_changed' => false,
         ]);
 
-        try {
-            Mail::to($student->email)->send(new StudentWelcomeMail($student, $temporaryPassword));
-
-            EmailLog::create([
-                'student_id' => $student->id,
-                'user_id' => Auth::id(),
-                'email_type' => 'welcome_credentials',
-                'subject' => 'Welcome to Insaf Insurance - Your Login Credentials',
-                'recipient_email' => $student->email,
-                'status' => 'sent',
-                'sent_at' => now(),
-            ]);
-
-            return back()->with('success', 'Credentials sent successfully to ' . $student->email);
-        } catch (\Exception $e) {
-            EmailLog::create([
-                'student_id' => $student->id,
-                'user_id' => Auth::id(),
-                'email_type' => 'welcome_credentials',
-                'subject' => 'Welcome to Insaf Insurance - Your Login Credentials',
-                'recipient_email' => $student->email,
-                'status' => 'failed',
-                'error_message' => $e->getMessage(),
-            ]);
-
-            return back()->with('error', 'Failed to send credentials: ' . $e->getMessage());
-        }
+        return back()->with('success', 'Credentials updated successfully for ' . $student->email);
     }
 }
