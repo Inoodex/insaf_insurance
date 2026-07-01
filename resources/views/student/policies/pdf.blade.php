@@ -139,6 +139,7 @@
             border-bottom: 1px solid #ddd;
             border-left: none;
             border-right: none;
+            border-top: 1px solid #ddd;
         }
 
          .benefit-table .shade3 th,
@@ -466,7 +467,7 @@
 
     <div style="text-align: center; margin-top: 15px; font-weight: bold;">
         The insurer will pay the medical provider directly if required by the law.<br>
-        Alarm Service (for emergencies only, 24/7): + 31 50 520 9780
+        Alarm Service (for emergencies only, 24/7) : + 31 50 520 9780
     </div>
 
     <div class="signature-section clearfix">
@@ -673,7 +674,7 @@
 
     <div style="text-align: center; margin-top: 15px; font-weight: bold;">
         The insurer will pay the medical provider directly if required by the law.<br>
-        Alarm Service (for emergencies only, 24/7): + 31 50 520 9780
+        Alarm Service (for emergencies only, 24/7) : + 31 50 520 9780
     </div>
 
     <div class="signature-section clearfix">
