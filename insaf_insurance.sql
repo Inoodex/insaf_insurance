@@ -44,7 +44,7 @@ CREATE TABLE `cache` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('swisscare-cache-tyro:user-1:roles',	'a:1:{i:0;s:5:\"admin\";}',	1782218154);
+('swisscare-cache-tyro:user-1:roles',	'a:1:{i:0;s:5:\"admin\";}',	1782804849);
 
 DROP TABLE IF EXISTS `cache_locks`;
 CREATE TABLE `cache_locks` (
@@ -143,7 +143,10 @@ INSERT INTO `email_logs` (`id`, `student_id`, `application_id`, `user_id`, `emai
 (31,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:23:00',	NULL,	'2026-06-23 04:23:00',	'2026-06-23 04:23:00'),
 (32,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'failed',	NULL,	'Expected response code \"354\" but got code \"550\", with message \"550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing\".',	'2026-06-23 04:23:01',	'2026-06-23 04:23:01'),
 (33,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:29:04',	NULL,	'2026-06-23 04:29:04',	'2026-06-23 04:29:04'),
-(34,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:29:18',	NULL,	'2026-06-23 04:29:18',	'2026-06-23 04:29:18');
+(34,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:29:18',	NULL,	'2026-06-23 04:29:18',	'2026-06-23 04:29:18'),
+(35,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-30 00:08:51',	NULL,	'2026-06-30 00:08:51',	'2026-06-30 00:08:51'),
+(36,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-30 00:16:24',	NULL,	'2026-06-30 00:16:24',	'2026-06-30 00:16:24'),
+(37,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-30 01:29:25',	NULL,	'2026-06-30 01:29:25',	'2026-06-30 01:29:25');
 
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE `failed_jobs` (
@@ -404,7 +407,7 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('qkaSes5oHNOREYPu9mopkti1ZPYCofP4BwYt40a0',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36',	'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiSnMwUEpkZXdhaUhWTDhEOE04MnN6MVJWd205Q0NGMDVQb3dPcEQzWSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvYXBwbGljYXRpb25zLzkvcGRmLXByZXZpZXciO3M6NToicm91dGUiO3M6MzA6ImFkbWluLmFwcGxpY2F0aW9ucy5wZGYtcHJldmlldyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTA6InR5cm8tbG9naW4iO2E6MTp7czo3OiJjYXB0Y2hhIjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjM6InVybCI7YToxOntzOjg6ImludGVuZGVkIjtzOjE0MzoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3N0dWRlbnQvcG9saWNpZXMvOS9kb3dubG9hZD9leHBpcmVzPTE3ODI4MDMwMDEmc2lnbmF0dXJlPWU3NmJhZTU0NjFiOWJkNmJkMTlmMTIxYWY1YWVlZTZkN2VmMGI0OGIzZTkxMzI1YjliZTA4N2ExZWQ1ZDZmODIiO319',	1782219530);
+('LgTSkvlvCmmGI5g79lh5OEQ0l2x8RHxuyCSMVuj0',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36',	'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVnU4Tm8zZlg1bkNrVWRnQ1dZMnJTN3RoeWpvdHlUSXNGbnZ6U3BmTCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjQ0OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL2FwcGxpY2F0aW9ucyI7czo1OiJyb3V0ZSI7czoyNDoiYWRtaW4uYXBwbGljYXRpb25zLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMDoidHlyby1sb2dpbiI7YToxOntzOjc6ImNhcHRjaGEiO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1782804567);
 
 DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
@@ -565,7 +568,10 @@ INSERT INTO `tyro_audit_logs` (`id`, `user_id`, `event`, `auditable_type`, `audi
 (58,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-11 03:47:41'),
 (59,	1,	'user.login',	'App\\Models\\Student',	1,	NULL,	'{\"email\": \"student1@example.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-11 04:10:17'),
 (60,	1,	'user.login',	'App\\Models\\Student',	1,	NULL,	'{\"email\": \"student1@example.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-11 04:40:04'),
-(61,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-23 07:02:00');
+(61,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-23 07:02:00'),
+(62,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-29 06:45:30'),
+(63,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-29 12:09:38'),
+(64,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-30 03:57:27');
 
 DROP TABLE IF EXISTS `tyro_media`;
 CREATE TABLE `tyro_media` (
@@ -655,4 +661,4 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `created_at`, `updated_at`, `suspended_at`, `suspension_reason`, `profile_photo_path`, `use_gravatar`, `deleted_at`) VALUES
 (1,	'Inoodex',	'hello@inoodex.com',	'2026-06-03 02:19:51',	'$2y$12$4zc4nVzLtVB9Dg.ZyYOznemOzzblh/d1rfLHsGwnEoA4UzOZO4Smm',	NULL,	NULL,	NULL,	'HXBIbGw7caIhfZXTtgHcBZb3MEIroptD3zDE1VzYU721CHxm6PEvmdge2pXi',	'2026-06-03 02:19:51',	'2026-06-03 02:19:51',	NULL,	NULL,	NULL,	0,	NULL);
 
--- 2026-06-23 13:22:10 UTC
+-- 2026-06-30 07:31:15 UTC

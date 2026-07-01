@@ -688,9 +688,7 @@
     </div>
 
     <div class="legal-notice">
-        Legal notice : The insurer is Anker Insurance Company n.v. at Paterswoldseweg 812 at 9728 BM Groningen. Anker is
-        registered with the Autoriteit Financiële Markten (AFM) (the Dutch Authority for the Financial Markets) under
-        number 12000661 and is authorised by De Nederlandsche Bank ("DNB").
+        Aviso legal: El asegurador es Anker Insurance Company n.v. en Paterswoldseweg 812 en 9728 BM Groningen. Anker está registrado en la Autoriteit Financiële Markten (AFM) (la Autoridad neerlandesa para los mercados financieros), bajo el número 12000661 y está autorizado por el De Nederlandsche Bank (“DNB”).
     </div>
     </div>
 </body>
