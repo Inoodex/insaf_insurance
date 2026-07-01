@@ -37,7 +37,7 @@
             margin-bottom: 1px;
             /* border-bottom: 1px solid #eee; */
             padding-bottom: 2px;
-            padding-top: 5px;
+            padding-top: 3px;
         }
 
         .benefits-title {
@@ -295,7 +295,7 @@
             left: 0;
             right: 0;
             /* border-top: 0.5px solid #ccc; */
-            padding-top: 5px;
+            padding-top: 12px;
         }
 
         .page-break {
@@ -313,7 +313,7 @@
 
     <div class="row clearfix">
         <div class="col">
-            <div class="section-header">Policyholder</div>
+            <div class="section-header" style="padding-top: 8px;">Policyholder</div>
             {{ strtoupper($application->student->full_name) }}<br>
             @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
             {{ $application->student->city }} {{ $application->student->zip_code }}<br>
@@ -497,7 +497,7 @@
 
     <div class="row clearfix">
         <div class="col">
-            <div class="section-header">Tenedor de póliza</div>
+            <div class="section-header" style="padding-top: 8px;">Tenedor de póliza</div>
             {{ strtoupper($application->student->full_name) }}<br>
             @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
             {{ $application->student->city }} {{ $application->student->zip_code }}<br>
