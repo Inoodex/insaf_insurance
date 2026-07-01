@@ -326,7 +326,7 @@
             {{ strtoupper($application->student->full_name) }}<br>
              @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
             {{ $application->student->city }} {{ $application->student->zip_code }}<br>
-            {{ $application->student->country_code }}
+            ({{ $application->student->country_code }})
             <br>
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
@@ -342,7 +342,7 @@
         {{ strtoupper($application->student->full_name) }} | {{ ucfirst($application->student->gender) }} |
         {{ $application->student->date_of_birth->format('d.m.Y') }} | {{ $application->student->passport_number }} |
         Nationality: {{ $application->student->nationality }} | Country of origin:
-        {{ $application->student->country_of_origin }}
+        ({{ $application->student->country_of_origin }})
     </div>
 
     <div class="policy-title">{{ $application->plan->plan_name }}</div>
@@ -509,7 +509,7 @@
             {{ strtoupper($application->student->full_name) }}<br>
             @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
             {{ $application->student->city }} {{ $application->student->zip_code }}<br>
-            {{ $application->student->country_code }}
+            ({{ $application->student->country_code }})
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
         <div class="col" style="padding-top: 18px;">

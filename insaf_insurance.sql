@@ -24,15 +24,15 @@ CREATE TABLE `benefit_coverages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `benefit_coverages` (`id`, `application_id`, `benefit_type`, `max_amount`, `currency`, `delivery_note`, `deductible_note`, `created_at`, `updated_at`) VALUES
-(46,	9,	'medical_cover',	50000.00,	'EUR',	NULL,	NULL,	'2026-06-10 22:41:09',	'2026-06-10 22:41:09'),
-(47,	9,	'sea_mountain_rescue',	30000.00,	'EUR',	NULL,	NULL,	'2026-06-10 22:41:09',	'2026-06-10 22:41:09'),
-(48,	9,	'emergency_evacuation',	150000.00,	'EUR',	NULL,	NULL,	'2026-06-10 22:41:09',	'2026-06-10 22:41:09'),
-(49,	9,	'medical_repatriation',	50000.00,	'EUR',	NULL,	NULL,	'2026-06-10 22:41:09',	'2026-06-10 22:41:09'),
-(50,	9,	'repatriation_mortal_remains',	30000.00,	'EUR',	NULL,	NULL,	'2026-06-10 22:41:10',	'2026-06-10 22:41:10'),
-(51,	9,	'luggage',	1000.00,	'EUR',	NULL,	'Deductible of EUR 250.00 per claim',	'2026-06-10 22:41:10',	'2026-06-10 22:41:10'),
-(52,	9,	'accidental_death',	25000.00,	'EUR',	NULL,	NULL,	'2026-06-10 22:41:10',	'2026-06-10 22:41:10'),
-(53,	9,	'accidental_disability',	50000.00,	'EUR',	NULL,	NULL,	'2026-06-10 22:41:10',	'2026-06-10 22:41:10'),
-(54,	9,	'third_party_liability',	500000.00,	'EUR',	NULL,	NULL,	'2026-06-10 22:41:10',	'2026-06-10 22:41:10');
+(55,	10,	'medical_cover',	50000.00,	'EUR',	NULL,	NULL,	'2026-07-01 04:42:50',	'2026-07-01 04:42:50'),
+(56,	10,	'sea_mountain_rescue',	30000.00,	'EUR',	NULL,	NULL,	'2026-07-01 04:42:50',	'2026-07-01 04:42:50'),
+(57,	10,	'emergency_evacuation',	150000.00,	'EUR',	NULL,	NULL,	'2026-07-01 04:42:50',	'2026-07-01 04:42:50'),
+(58,	10,	'medical_repatriation',	50000.00,	'EUR',	NULL,	NULL,	'2026-07-01 04:42:50',	'2026-07-01 04:42:50'),
+(59,	10,	'repatriation_mortal_remains',	30000.00,	'EUR',	NULL,	NULL,	'2026-07-01 04:42:50',	'2026-07-01 04:42:50'),
+(60,	10,	'luggage',	1000.00,	'EUR',	NULL,	'Deductible of EUR 250.00 per claim',	'2026-07-01 04:42:50',	'2026-07-01 04:42:50'),
+(61,	10,	'accidental_death',	25000.00,	'EUR',	NULL,	NULL,	'2026-07-01 04:42:50',	'2026-07-01 04:42:50'),
+(62,	10,	'accidental_disability',	50000.00,	'EUR',	NULL,	NULL,	'2026-07-01 04:42:50',	'2026-07-01 04:42:50'),
+(63,	10,	'third_party_liability',	500000.00,	'EUR',	NULL,	NULL,	'2026-07-01 04:42:50',	'2026-07-01 04:42:50');
 
 DROP TABLE IF EXISTS `cache`;
 CREATE TABLE `cache` (
@@ -44,7 +44,7 @@ CREATE TABLE `cache` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('swisscare-cache-tyro:user-1:roles',	'a:1:{i:0;s:5:\"admin\";}',	1782804849);
+('swisscare-cache-tyro:user-1:roles',	'a:1:{i:0;s:5:\"admin\";}',	1782902844);
 
 DROP TABLE IF EXISTS `cache_locks`;
 CREATE TABLE `cache_locks` (
@@ -125,28 +125,6 @@ CREATE TABLE `email_logs` (
   CONSTRAINT `email_logs_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `email_logs` (`id`, `student_id`, `application_id`, `user_id`, `email_type`, `subject`, `recipient_email`, `status`, `sent_at`, `error_message`, `created_at`, `updated_at`) VALUES
-(1,	1,	NULL,	1,	'welcome_credentials',	'Welcome to Insaf Insurance - Your Login Credentials',	'student1@example.com',	'failed',	NULL,	'Route [login] not defined. (View: C:\\laragon\\www\\insaf_insurance\\resources\\views\\emails\\student\\welcome.blade.php)',	'2026-06-03 04:16:53',	'2026-06-03 04:16:53'),
-(2,	1,	NULL,	1,	'welcome_credentials',	'Welcome to Insaf Insurance - Your Login Credentials',	'student1@example.com',	'failed',	NULL,	'Route [login] not defined. (View: C:\\laragon\\www\\insaf_insurance\\resources\\views\\emails\\student\\welcome.blade.php)',	'2026-06-03 04:28:45',	'2026-06-03 04:28:45'),
-(3,	1,	NULL,	1,	'welcome_credentials',	'Welcome to Insaf Insurance - Your Login Credentials',	'student1@example.com',	'sent',	'2026-06-03 04:29:48',	NULL,	'2026-06-03 04:29:48',	'2026-06-03 04:29:48'),
-(7,	1,	NULL,	1,	'policy_issued',	'Your Insurance Policy ISIE-XYXUWD Has Been Issued',	'student1@example.com',	'sent',	'2026-06-07 01:43:20',	NULL,	'2026-06-07 01:43:20',	'2026-06-07 01:43:20'),
-(21,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 01:03:45',	NULL,	'2026-06-23 01:03:45',	'2026-06-23 01:03:45'),
-(22,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 02:19:25',	NULL,	'2026-06-23 02:19:25',	'2026-06-23 02:19:25'),
-(23,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 03:14:57',	NULL,	'2026-06-23 03:14:57',	'2026-06-23 03:14:57'),
-(24,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 03:17:48',	NULL,	'2026-06-23 03:17:48',	'2026-06-23 03:17:48'),
-(25,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 03:21:55',	NULL,	'2026-06-23 03:21:55',	'2026-06-23 03:21:55'),
-(26,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 03:24:55',	NULL,	'2026-06-23 03:24:55',	'2026-06-23 03:24:55'),
-(27,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:02:25',	NULL,	'2026-06-23 04:02:25',	'2026-06-23 04:02:25'),
-(28,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:08:34',	NULL,	'2026-06-23 04:08:34',	'2026-06-23 04:08:34'),
-(29,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:17:17',	NULL,	'2026-06-23 04:17:17',	'2026-06-23 04:17:17'),
-(30,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:18:41',	NULL,	'2026-06-23 04:18:41',	'2026-06-23 04:18:41'),
-(31,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:23:00',	NULL,	'2026-06-23 04:23:00',	'2026-06-23 04:23:00'),
-(32,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'failed',	NULL,	'Expected response code \"354\" but got code \"550\", with message \"550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing\".',	'2026-06-23 04:23:01',	'2026-06-23 04:23:01'),
-(33,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:29:04',	NULL,	'2026-06-23 04:29:04',	'2026-06-23 04:29:04'),
-(34,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-23 04:29:18',	NULL,	'2026-06-23 04:29:18',	'2026-06-23 04:29:18'),
-(35,	1,	9,	1,	'policy_issued',	'Your Insurance Policy ISIE-684185 Has Been Issued',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-30 00:08:51',	NULL,	'2026-06-30 00:08:51',	'2026-06-30 00:08:51'),
-(36,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-30 00:16:24',	NULL,	'2026-06-30 00:16:24',	'2026-06-30 00:16:24'),
-(37,	1,	9,	1,	'policy_download',	'Your Insurance Policy Document - ISIE-684185',	'hasssaninoodex@gmail.com',	'sent',	'2026-06-30 01:29:25',	NULL,	'2026-06-30 01:29:25',	'2026-06-30 01:29:25');
 
 DROP TABLE IF EXISTS `failed_jobs`;
 CREATE TABLE `failed_jobs` (
@@ -194,7 +172,7 @@ CREATE TABLE `insurance_applications` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `insurance_applications` (`id`, `student_id`, `user_id`, `plan_id`, `policy_number`, `gic_reference`, `first_destination`, `territories`, `start_date`, `end_date`, `duration_days`, `premium_amount`, `currency`, `paid_on`, `status`, `notes`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(9,	1,	1,	2,	'ISIE-684185',	'SIE-GIC-012026',	'Malta',	'Worldwide',	'2026-01-01',	'2026-12-01',	335,	250.00,	'EUR',	'2026-06-11',	'sent',	NULL,	'2026-06-10 22:41:09',	'2026-06-11 00:51:24',	NULL);
+(10,	6,	1,	2,	'ISIE-WEGW5A',	'REF-1234',	'Malta',	'Worldwide',	'2026-07-01',	'2026-07-02',	2,	500.00,	'EUR',	NULL,	'draft',	NULL,	'2026-07-01 04:42:50',	'2026-07-01 04:42:50',	NULL);
 
 DROP TABLE IF EXISTS `insurance_plans`;
 CREATE TABLE `insurance_plans` (
@@ -320,7 +298,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (26,	'2026_06_03_075635_add_extra_profile_fields_to_students_table',	1),
 (27,	'2026_06_09_111646_add_soft_deletes_to_users_table',	2),
 (28,	'2026_06_11_000001_add_institute_phone_to_students_table',	3),
-(29,	'2026_06_23_000001_add_policy_download_to_email_type_enum',	4);
+(29,	'2026_06_23_000001_add_policy_download_to_email_type_enum',	4),
+(30,	'2026_07_01_000001_make_institute_fields_nullable',	5);
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
 CREATE TABLE `password_reset_tokens` (
@@ -407,7 +386,8 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('LgTSkvlvCmmGI5g79lh5OEQ0l2x8RHxuyCSMVuj0',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36',	'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVnU4Tm8zZlg1bkNrVWRnQ1dZMnJTN3RoeWpvdHlUSXNGbnZ6U3BmTCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjQ0OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL2FwcGxpY2F0aW9ucyI7czo1OiJyb3V0ZSI7czoyNDoiYWRtaW4uYXBwbGljYXRpb25zLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMDoidHlyby1sb2dpbiI7YToxOntzOjc6ImNhcHRjaGEiO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1782804567);
+('MKDUzOtVLikisfhieN7Qt9j8EKJyD1RP6LDLBQcK',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',	'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiRzI4TnphNTJxTzZhWEVZZ2p6RXJSQ3Q3aEhhMHF2SE5FcUtBT2twaCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjU5OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL2FwcGxpY2F0aW9ucy8xMC9wZGYtcHJldmlldyI7czo1OiJyb3V0ZSI7czozMDoiYWRtaW4uYXBwbGljYXRpb25zLnBkZi1wcmV2aWV3Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMDoidHlyby1sb2dpbiI7YToxOntzOjc6ImNhcHRjaGEiO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1782902633),
+('Y6zH8SSl2RBOBGzUhtvuXN7B7ri3o1YhlfeaVDvB',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaVMyUmRUWTZYVktDaFNjVUdCQmdGN29MSjc3OEF1d3BwZGlaRmd3cyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvc3R1ZGVudHMiO3M6NToicm91dGUiO3M6MjA6ImFkbWluLnN0dWRlbnRzLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMDoidHlyby1sb2dpbiI7YToxOntzOjc6ImNhcHRjaGEiO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1782895215);
 
 DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
@@ -457,13 +437,13 @@ CREATE TABLE `students` (
   `nationality` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country_of_origin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `institute_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `institute_address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `institute_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `institute_address` text COLLATE utf8mb4_unicode_ci,
   `institute_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_code` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_company` tinyint(1) NOT NULL DEFAULT '0',
   `correspondence_firstname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `correspondence_lastname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -488,7 +468,7 @@ CREATE TABLE `students` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `students` (`id`, `full_name`, `email`, `passport_number`, `date_of_birth`, `gender`, `nationality`, `country_of_origin`, `phone_number`, `institute_name`, `institute_address`, `institute_phone`, `address_2`, `zip_code`, `city`, `country_code`, `is_company`, `correspondence_firstname`, `correspondence_lastname`, `correspondence_gender`, `correspondence_address_1`, `correspondence_address_2`, `correspondence_country`, `correspondence_zip_code`, `correspondence_city`, `correspondence_country_code`, `correspondence_phone`, `password`, `temporary_password`, `password_changed`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1,	'Md Hasan',	'hasssaninoodex@gmail.com',	'AB123456',	'2000-01-01',	'male',	'Bangladeshi',	'Bangladesh',	'+8801234567890',	'International Institute by Malta',	'135 Triq Hal Luqa',	'+35677775386',	'',	'1501',	'Raħal Ġdid PLA',	'Malta',	0,	'Parent',	'One',	'male',	'123 Main St',	'Test 2',	'Bangladesh',	'1234',	'Dhaka',	'+880',	'01711111111',	'$2y$12$b/m.Zgj/FQJ2Zmz2rySbIul/prfxuZKB/.4LtM9OdZpKfYhtDLR7W',	NULL,	1,	NULL,	'2026-06-10 02:19:52',	'2026-06-23 03:45:49',	NULL);
+(6,	'Jesse Lockman',	'hasssaninoodex@gmail.com',	'286',	'2026-02-13',	'other',	'San Ramon',	'Monaco',	'605-688-9670',	NULL,	'73667 Pfannerstill Passage',	'672-645-1444',	NULL,	'15941',	'Normal',	'Mozambiqueawevtw',	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'$2y$12$FqVdCz6CPe5VWnjFPY.e/.hQUJlPl.dn3ku6FKcwPPNKV9Q7wRz32',	'1wJiO59BtX',	0,	NULL,	'2026-07-01 02:40:14',	'2026-07-01 02:40:14',	NULL);
 
 DROP TABLE IF EXISTS `tyro_audit_logs`;
 CREATE TABLE `tyro_audit_logs` (
@@ -571,7 +551,9 @@ INSERT INTO `tyro_audit_logs` (`id`, `user_id`, `event`, `auditable_type`, `audi
 (61,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-23 07:02:00'),
 (62,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-29 06:45:30'),
 (63,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-29 12:09:38'),
-(64,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-30 03:57:27');
+(64,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-30 03:57:27'),
+(65,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"}',	'2026-07-01 08:17:20'),
+(66,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"}',	'2026-07-01 10:42:23');
 
 DROP TABLE IF EXISTS `tyro_media`;
 CREATE TABLE `tyro_media` (
@@ -661,4 +643,4 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `created_at`, `updated_at`, `suspended_at`, `suspension_reason`, `profile_photo_path`, `use_gravatar`, `deleted_at`) VALUES
 (1,	'Inoodex',	'hello@inoodex.com',	'2026-06-03 02:19:51',	'$2y$12$4zc4nVzLtVB9Dg.ZyYOznemOzzblh/d1rfLHsGwnEoA4UzOZO4Smm',	NULL,	NULL,	NULL,	'HXBIbGw7caIhfZXTtgHcBZb3MEIroptD3zDE1VzYU721CHxm6PEvmdge2pXi',	'2026-06-03 02:19:51',	'2026-06-03 02:19:51',	NULL,	NULL,	NULL,	0,	NULL);
 
--- 2026-06-30 07:31:15 UTC
+-- 2026-07-01 11:00:00 UTC
