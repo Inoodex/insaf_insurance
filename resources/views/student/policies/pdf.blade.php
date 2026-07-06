@@ -69,7 +69,7 @@
             font-size: 10px;
             font-weight: bold;
             color: #000;
-            padding-top: 5px;
+            /* padding-top: 2px; */
         }
 
         .policy-number {
@@ -313,7 +313,7 @@
 
     <div class="row clearfix">
         <div class="col">
-            <div class="section-header" style="padding-top: 8px;">Policyholder</div>
+            <div class="section-header" style="padding-top: 3px;">Policyholder</div>
             {{ strtoupper($application->student->full_name) }}<br>
             @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
             {{ $application->student->city }} {{ $application->student->zip_code }}<br>
@@ -497,7 +497,7 @@
 
     <div class="row clearfix">
         <div class="col">
-            <div class="section-header" style="padding-top: 8px;">Tenedor de póliza</div>
+            <div class="section-header" style="padding-top: 3px;">Tenedor de póliza</div>
             {{ strtoupper($application->student->full_name) }}<br>
             @if($application->student->institute_name){{ $application->student->institute_name }},@endif{{ $application->student->institute_address }}<br>
             {{ $application->student->city }} {{ $application->student->zip_code }}<br>
