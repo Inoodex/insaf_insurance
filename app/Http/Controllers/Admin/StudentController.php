@@ -40,8 +40,8 @@ class StudentController extends Controller
     {
         $validated = $request->validate([
             'full_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students,email',
-            'passport_number' => 'required|string|unique:students,passport_number',
+            'email' => 'required|email',
+            'passport_number' => 'required|string',
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:male,female,other',
             'nationality' => 'required|string|max:255',
@@ -79,8 +79,8 @@ class StudentController extends Controller
     {
         $validated = $request->validate([
             'full_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:students,email,' . $student->id,
-            'passport_number' => 'required|string|unique:students,passport_number,' . $student->id,
+            'email' => 'required|email',
+            'passport_number' => 'required|string',
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:male,female,other',
             'nationality' => 'required|string|max:255',
