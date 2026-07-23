@@ -330,7 +330,7 @@
             <br>
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
-        <div class="col" style="padding-top: 18px;">
+        <div class="col" style="padding-top: 2px;">
             {{-- <div class="section-header">Contact</div> --}}
            <strong>Email</strong>  {{ $application->student->email }}<br>
             <strong>Phone number</strong> {{ $application->student->institute_phone ?? '+35677775386' }}
@@ -512,7 +512,7 @@
             ({{ $application->student->country_code }})
            @if($application->student->address_2){{ $application->student->address_2 }}<br>@endif
         </div>
-        <div class="col" style="padding-top: 18px;">
+        <div class="col" style="padding-top: 2px;">
             {{-- <div class="section-header">Contacto</div> --}}
              <strong>Email</strong>  {{ $application->student->email }}<br>
             <strong>Teléfono</strong> {{ $application->student->institute_phone ?? '+35677775386' }}

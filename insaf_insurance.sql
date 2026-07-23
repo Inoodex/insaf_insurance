@@ -44,7 +44,7 @@ CREATE TABLE `cache` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('swisscare-cache-tyro:user-1:roles',	'a:1:{i:0;s:5:\"admin\";}',	1782902844);
+('swisscare-cache-tyro:user-1:roles',	'a:1:{i:0;s:5:\"admin\";}',	1784349573);
 
 DROP TABLE IF EXISTS `cache_locks`;
 CREATE TABLE `cache_locks` (
@@ -299,7 +299,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (27,	'2026_06_09_111646_add_soft_deletes_to_users_table',	2),
 (28,	'2026_06_11_000001_add_institute_phone_to_students_table',	3),
 (29,	'2026_06_23_000001_add_policy_download_to_email_type_enum',	4),
-(30,	'2026_07_01_000001_make_institute_fields_nullable',	5);
+(30,	'2026_07_01_000001_make_institute_fields_nullable',	5),
+(31,	'2026_07_18_103252_drop_student_unique_constraints',	6);
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
 CREATE TABLE `password_reset_tokens` (
@@ -386,8 +387,7 @@ CREATE TABLE `sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('MKDUzOtVLikisfhieN7Qt9j8EKJyD1RP6LDLBQcK',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',	'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiRzI4TnphNTJxTzZhWEVZZ2p6RXJSQ3Q3aEhhMHF2SE5FcUtBT2twaCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjU5OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkL2FwcGxpY2F0aW9ucy8xMC9wZGYtcHJldmlldyI7czo1OiJyb3V0ZSI7czozMDoiYWRtaW4uYXBwbGljYXRpb25zLnBkZi1wcmV2aWV3Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMDoidHlyby1sb2dpbiI7YToxOntzOjc6ImNhcHRjaGEiO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1782902633),
-('Y6zH8SSl2RBOBGzUhtvuXN7B7ri3o1YhlfeaVDvB',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiaVMyUmRUWTZYVktDaFNjVUdCQmdGN29MSjc3OEF1d3BwZGlaRmd3cyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvc3R1ZGVudHMiO3M6NToicm91dGUiO3M6MjA6ImFkbWluLnN0dWRlbnRzLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMDoidHlyby1sb2dpbiI7YToxOntzOjc6ImNhcHRjaGEiO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1782895215);
+('Ph4r024yqteOvN8C8Y4GXJNSRIz43YzrABq0LGjU',	1,	'127.0.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiajQweWpydDB1ektXT3RSMnZ3enN3TzRabFFXclVjRmFDcGticVhlZiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQvc3R1ZGVudHMiO3M6NToicm91dGUiO3M6MjA6ImFkbWluLnN0dWRlbnRzLmluZGV4Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMDoidHlyby1sb2dpbiI7YToxOntzOjc6ImNhcHRjaGEiO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1784349545);
 
 DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
@@ -462,13 +462,13 @@ CREATE TABLE `students` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `students_email_unique` (`email`),
-  UNIQUE KEY `students_passport_number_unique` (`passport_number`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `students` (`id`, `full_name`, `email`, `passport_number`, `date_of_birth`, `gender`, `nationality`, `country_of_origin`, `phone_number`, `institute_name`, `institute_address`, `institute_phone`, `address_2`, `zip_code`, `city`, `country_code`, `is_company`, `correspondence_firstname`, `correspondence_lastname`, `correspondence_gender`, `correspondence_address_1`, `correspondence_address_2`, `correspondence_country`, `correspondence_zip_code`, `correspondence_city`, `correspondence_country_code`, `correspondence_phone`, `password`, `temporary_password`, `password_changed`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(6,	'Jesse Lockman',	'hasssaninoodex@gmail.com',	'286',	'2026-02-13',	'other',	'San Ramon',	'Monaco',	'605-688-9670',	NULL,	'73667 Pfannerstill Passage',	'672-645-1444',	NULL,	'15941',	'Normal',	'Mozambiqueawevtw',	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'$2y$12$FqVdCz6CPe5VWnjFPY.e/.hQUJlPl.dn3ku6FKcwPPNKV9Q7wRz32',	'1wJiO59BtX',	0,	NULL,	'2026-07-01 02:40:14',	'2026-07-01 02:40:14',	NULL);
+(6,	'Jesse Lockman',	'hasssaninoodex1@gmail.com',	'286as',	'2026-02-13',	'other',	'San Ramon',	'Monaco',	'605-688-9670',	NULL,	'73667 Pfannerstill Passage',	'672-645-1444',	NULL,	'15941',	'Normal',	'Mozambiqueawevtw',	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'$2y$12$FqVdCz6CPe5VWnjFPY.e/.hQUJlPl.dn3ku6FKcwPPNKV9Q7wRz32',	'1wJiO59BtX',	0,	NULL,	'2026-07-01 02:40:14',	'2026-07-17 22:12:45',	NULL),
+(7,	'Genevieve Hessel',	'hasssaninoodex1@gmail.com',	'286as',	'2025-12-09',	'other',	'Glendale',	'Micronesia',	'023-907-9635',	'Terebro bestia laboriosam caecus spectaculum nam rerum fuga umerus deporto. Ustilo auxilium canto textor desidero ascisco. Vitae solio arca vado clibanus dignissimos.',	'423 Pedro Pines',	'728-031-2431',	NULL,	'97393',	'St. Joseph',	'Tonga',	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'$2y$12$tsw7H./hYjR8H7arhXwAP.fd8Jv3bdc0aqMraVkE1qYq0DTuJUqIq',	'6SR63WIizK',	0,	NULL,	'2026-07-17 22:34:47',	'2026-07-17 22:38:13',	'2026-07-17 22:38:13'),
+(8,	'Jesse Lockman',	'your.email+fakedata69426@gmail.com',	'286as',	'2025-10-27',	'other',	'Rockwall',	'Lithuania',	'068-627-1538',	'Canis ventosus caterva auxilium succurro comedo ceno quam coepi artificiose. Benigne cursus quae clam. Nesciunt modi versus aestas thesis bis tribuo.',	'60046 Martin Luther King Jr Boulevard',	'045-746-3905',	NULL,	'74087',	'Ocala',	'Lithuania',	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	'$2y$12$wG864tfh.rJoF3EtccS0NOpmZIW4DAvgXDQW/m.dxEZP8nyyYJWfK',	'D2aQRp8Vpb',	0,	NULL,	'2026-07-17 22:38:53',	'2026-07-17 22:39:05',	'2026-07-17 22:39:05');
 
 DROP TABLE IF EXISTS `tyro_audit_logs`;
 CREATE TABLE `tyro_audit_logs` (
@@ -553,7 +553,9 @@ INSERT INTO `tyro_audit_logs` (`id`, `user_id`, `event`, `auditable_type`, `audi
 (63,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-29 12:09:38'),
 (64,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36\"}',	'2026-06-30 03:57:27'),
 (65,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"}',	'2026-07-01 08:17:20'),
-(66,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"}',	'2026-07-01 10:42:23');
+(66,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"}',	'2026-07-01 10:42:23'),
+(67,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"192.168.0.107\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"}',	'2026-07-06 05:30:13'),
+(68,	1,	'user.login',	'App\\Models\\User',	1,	NULL,	'{\"email\": \"hello@inoodex.com\"}',	'{\"ip\": \"127.0.0.1\", \"is_console\": false, \"user_agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"}',	'2026-07-18 04:06:42');
 
 DROP TABLE IF EXISTS `tyro_media`;
 CREATE TABLE `tyro_media` (
@@ -643,4 +645,4 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `created_at`, `updated_at`, `suspended_at`, `suspension_reason`, `profile_photo_path`, `use_gravatar`, `deleted_at`) VALUES
 (1,	'Inoodex',	'hello@inoodex.com',	'2026-06-03 02:19:51',	'$2y$12$4zc4nVzLtVB9Dg.ZyYOznemOzzblh/d1rfLHsGwnEoA4UzOZO4Smm',	NULL,	NULL,	NULL,	'HXBIbGw7caIhfZXTtgHcBZb3MEIroptD3zDE1VzYU721CHxm6PEvmdge2pXi',	'2026-06-03 02:19:51',	'2026-06-03 02:19:51',	NULL,	NULL,	NULL,	0,	NULL);
 
--- 2026-07-01 11:00:00 UTC
+-- 2026-07-18 05:19:02 UTC
