@@ -524,7 +524,7 @@
         {{ strtoupper($application->student->full_name) }} | {{ ucfirst($application->student->gender) }} |
         {{ $application->student->date_of_birth->format('d.m.Y') }} | {{ $application->student->passport_number }} |
         Nacionalidad: {{ $application->student->nationality }} | País de origen:
-        {{ $application->student->country_of_origin }}
+        ({{ $application->student->country_of_origin }})
     </div>
 
     <div class="policy-title">{{ $application->plan->plan_name }}</div>
