@@ -51,9 +51,6 @@
                         <tr>
                             <th>Student</th>
                             <th>Policy Number</th>
-                            {{-- <th>Plan</th>
-                            <th>Duration</th> --}}
-                            <th>Payment</th>
                             <th>Status</th>
                             <th class="text-center"> Send Emails </th>
                             <th class="text-center">Action</th>
@@ -67,23 +64,20 @@
                                     <div class="text-xs text-white-dark">{{ optional($application->student)->passport_number }}</div>
                                 </td>
                                 <td>
-                                    @if($application->policy_number)
-                                        <span class="font-mono text-primary font-bold">{{ $application->policy_number }}</span>
-                                    @else
-                                        <span class="text-white-dark italic">Not Issued</span>
-                                    @endif
-                                </td>
-                                {{-- <td>{{ $application->plan->plan_name }}</td>
-                                <td>
-                                    <div class="text-sm">{{ $application->start_date->format('d M Y') }}</div>
-                                    <div class="text-xs text-white-dark">{{ $application->duration_days }} Days</div>
-                                </td> --}}
-                                <td>
-                                    @if($application->paid_on)
-                                        <span class="badge badge-outline-success">Paid {{ $application->paid_on->format('d M Y') }}</span>
-                                    @else
-                                        <span class="badge badge-outline-warning">Unpaid</span>
-                                    @endif
+                                    <div>
+                                        @if($application->policy_number)
+                                            <span class="font-mono text-primary font-bold">{{ $application->policy_number }}</span>
+                                        @else
+                                            <span class="text-white-dark italic">Not Issued</span>
+                                        @endif
+                                    </div>
+                                    <div class="mt-1">
+                                        @if($application->paid_on)
+                                            <span class="badge badge-outline-success">Paid {{ $application->paid_on->format('d M Y') }}</span>
+                                        @else
+                                            <span class="badge badge-outline-warning">Unpaid</span>
+                                        @endif
+                                    </div>
                                 </td>
                                 <td>
                                     @php
