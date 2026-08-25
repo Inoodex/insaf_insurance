@@ -60,7 +60,9 @@
                         @forelse($applications as $application)
                             <tr>
                                 <td>
-                                    <div class="font-semibold">{{ optional($application->student)->full_name }}</div>
+                                    <div class="font-semibold" title="{{ optional($application->student)->full_name }}">
+                                        {{ Str::limit(optional($application->student)->full_name, 20) }}
+                                    </div>
                                     <div class="text-xs text-white-dark">{{ optional($application->student)->passport_number }}</div>
                                 </td>
                                 <td>
