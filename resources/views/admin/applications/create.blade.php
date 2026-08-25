@@ -110,6 +110,7 @@
                 <div class="form-group">
                     <label for="premium_amount">Premium Amount <span class="text-danger">*</span></label>
                     <input type="number" step="0.01" name="premium_amount" id="premium_amount" class="form-input" required value="{{ old('premium_amount') }}"/>
+                    @error('premium_amount') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">

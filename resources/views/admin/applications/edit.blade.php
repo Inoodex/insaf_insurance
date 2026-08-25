@@ -99,16 +99,25 @@
                 <div class="form-group">
                     <label for="premium_amount">Premium Amount ({{ $application->currency }}) <span class="text-danger">*</span></label>
                     <input type="number" step="0.01" name="premium_amount" id="premium_amount" class="form-input" required value="{{ old('premium_amount', $application->premium_amount) }}" />
+                    @error('premium_amount') <span class="text-danger text-sm">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="paid_on">Payment Date <span class="text-xs text-white-dark">(Leave blank for Unpaid)</span></label>
+                    <input type="date" name="paid_on" id="paid_on" class="form-input" value="{{ old('paid_on', $application->paid_on?->format('Y-m-d')) }}" />
+                    @error('paid_on') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="start_date">Start Date <span class="text-danger">*</span></label>
                     <input type="date" name="start_date" id="start_date" class="form-input" required value="{{ old('start_date', $application->start_date->format('Y-m-d')) }}" />
+                    @error('start_date') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="end_date">End Date <span class="text-danger">*</span></label>
                     <input type="date" name="end_date" id="end_date" class="form-input" required value="{{ old('end_date', $application->end_date->format('Y-m-d')) }}" />
+                    @error('end_date') <span class="text-danger text-sm">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group md:col-span-2">
